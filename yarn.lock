@@ -12,6 +12,11 @@
   resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.7.0.tgz#26fae79e5023fc6c9dfd99ca5d3d357e1c5b9c60"
   integrity sha512-hxOgLYR+wjuPX9bkP2pAPlqUs98XxBoa9DSLyp1z6+YR92wC42PZcZKs4d+VRtcv4udOv041Kss+F6ap5nj8YA==
 
+"@vue/devtools-api@^6.1.4":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.2.1.tgz#6f2948ff002ec46df01420dfeff91de16c5b4092"
+  integrity sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==
+
 "@vuelidate/core@^2.0.0-alpha.44":
   version "2.0.0-alpha.44"
   resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.0-alpha.44.tgz#2ef61631fef542fb7827a0b0cfd5a4ed9dd5dc6d"
@@ -26,7 +31,19 @@
   dependencies:
     vue-demi "^0.13.4"
 
+vee-validate@^4.6.6:
+  version "4.6.6"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.6.6.tgz#368604ef8f3742a0dc84d0dc06965c2630797e7d"
+  integrity sha512-juvuSvZlWvjdpe/3GL19mHi5p5xc7OcKgSMVI8v4YN8YtqezsSh3OKIqaSu1y3DhPZTY9y1LbMyJyuqa6g3cuA==
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
+
 vue-demi@^0.13.4:
   version "0.13.8"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.8.tgz#5c568fb3b4d8f848acc658dfccd3d875035b5653"
   integrity sha512-Vy1zbZhCOdsmvGR6tJhAvO5vhP7eiS8xkbYQSoVa7o6KlIy3W8Rc53ED4qI4qpeRDjv3mLfXSEpYU6Yq4pgXRg==
+
+vuelidate@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/vuelidate/-/vuelidate-0.7.7.tgz#5df3930a63ddecf56fde7bdacea9dbaf0c9bf899"
+  integrity sha512-pT/U2lDI67wkIqI4tum7cMSIfGcAMfB+Phtqh2ttdXURwvHRBJEAQ0tVbUsW9Upg83Q5QH59bnCoXI7A9JDGnA==

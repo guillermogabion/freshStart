@@ -109,10 +109,32 @@
               >
                 Register
               </v-btn>
+              
+              <v-spacer></v-spacer>
+            </v-card-actions>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <!-- <v-btn
+                outlined  
+                @click="Login()"
+                color="primary"
+              >
+                Login
+              </v-btn> -->
+              <v-btn
+                block
+                color="primary"
+                class="mt-1"
+                @click="dialog1 = true"
+              >
+                Test
+              </v-btn>
                
+              
               <v-spacer></v-spacer>
             </v-card-actions>
         <Register :dialog="dialog" @close="close()" />
+        <Test :dialog="dialog1" @close="close()" />
 
         </v-card>
         <v-snackbar
@@ -134,18 +156,21 @@
 
 <script>
 import Register from './dialogs/register.vue'
+import Test from './dialogs/test.vue'
 import logo from '@/assets/images/logo.png'
 import { login } from "@/repositories/user.api";
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
     
 export default {
    components : {
-      Register
+      Register,
+      Test
    },
     data(){
         return {
             timeout: 1400,
             dialog: false,
+            dialog1: false,
             logo,
             email: '',
             password: '',
@@ -186,6 +211,7 @@ export default {
             },
             close() {
               this.dialog = false;
+              this.dialog1 = false;
              }
        
     }

@@ -48,6 +48,8 @@
                 v-model="payload.firstname"
                 outlined
                 label="First Name"
+                v-validate:payload.firstname = "'required'"
+                data-vv-name="First Name" 
                 placeholder="John"
                 hide-details
                 class="mb-3 px-3"
@@ -129,11 +131,10 @@
 
 <script>
     import logo from '@/assets/images/logo.png'
-    import { required, minLength, maxLength, between } from 'vuelidate'
+    // import { required, minLength, maxLength, between } from 'vuelidate'
     import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 export default {
-    name: 'register',
     data(){
         return {
             timeout: 1400,
@@ -157,9 +158,7 @@ export default {
      
         }
     },
-    validations : {
-
-    },
+    
     props: {
         dialog:{
             required: true,
@@ -172,12 +171,23 @@ export default {
     },
     methods: {
       register(){
-        let payload = this.payload
-        Register(payload).then((res)=> {
-           console.log(res)
-           this.$emit('close')
 
-        })
+        this.$validator.validateAll().then(result => {
+          if(result){
+            let payload = this.payload
+            Register(payload).then((res)=> {
+               console.log(res)
+               this.$emit('close')
+
+            })
+          }
+        });
+        // let payload = this.payload
+        // Register(payload).then((res)=> {
+        //    console.log(res)
+        //    this.$emit('close')
+
+        // })
       }
        
     }
