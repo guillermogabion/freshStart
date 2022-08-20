@@ -949,6 +949,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/splash-screen@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@capacitor/splash-screen/-/splash-screen-1.2.2.tgz#fabd52ffbb922c38e2b3ef605332f29c830bd508"
+  integrity sha512-iGh9gc0rdS3R+Wr+bD/+tJl3qbmJZ5xVQAP5UsD6U6Y3ydCBo9KpA8DEqxaBZVsCDaLt67009hK5nxKBwjRn7Q==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -2972,7 +2977,7 @@ cross-env@^5.2.0:
   dependencies:
     cross-spawn "^6.0.5"
 
-cross-spawn@^5.0.1:
+cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   integrity sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=
@@ -4428,6 +4433,14 @@ graceful-fs@^4.2.0:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+gradle@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/gradle/-/gradle-1.2.4.tgz#7a9f73ff597979e9a974b886a492813d3180bd89"
+  integrity sha512-I1AyvY1kaSXQuUH47IsrvBUgNkMkzU0iN8DjzuD2fV3F7q0yFOv6c07qo5ykuYEcSzM7Cu5AeqNtuakMxVHFKQ==
+  dependencies:
+    chalk "^4.0.0"
+    cross-spawn "^5.1.0"
 
 gzip-size@^5.0.0:
   version "5.1.1"

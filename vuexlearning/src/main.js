@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify'
 import axios from '@/plugins/axios'
 import general from '@/mixins/general'
 import titleMixin from './mixins/titleMixin'
+import Vuelidate from 'vuelidate'
 // import * as VeeValidate from 'vee-validate';
 // import moment from 'moment'
 // import general from '@/mixins/general'
@@ -21,6 +22,7 @@ Vue.mixin(titleMixin)
 
 // Vue.use(VueChart)
 Vue.mixin(general)
+Vue.use(Vuelidate)
 
 new Vue({
     router,

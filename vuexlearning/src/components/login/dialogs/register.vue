@@ -1,4 +1,10 @@
 <template>
+<v-dialog
+    v-model="dialog"
+    fullscreen
+    hide-overlay
+    transition="dialog-top-transition"
+>
   <div class="login-page">
         <v-card
           class="mx-auto"
@@ -39,7 +45,31 @@
                 class="login-page-text-field"
               ></v-text-field> -->
               <v-text-field
-                v-model="email"
+                v-model="payload.firstname"
+                outlined
+                label="First Name"
+                placeholder="John"
+                hide-details
+                class="mb-3 px-3"
+              ></v-text-field>
+              <v-text-field
+                v-model="payload.lastname"
+                outlined
+                label="Last Name"
+                placeholder="Doe"
+                hide-details
+                class="mb-3 px-3"
+              ></v-text-field>
+              <v-text-field
+                v-model="payload.password"
+                outlined
+                label="Phone"
+                placeholder="+639525565345"
+                hide-details
+                class="mb-3 px-3"
+              ></v-text-field>
+              <v-text-field
+                v-model="payload.email"
                 outlined
                 label="Email"
                 placeholder="john@example.com"
@@ -47,7 +77,7 @@
                 class="mb-3 px-3"
               ></v-text-field>
               <v-text-field
-                v-model="password"
+                v-model="payload.password"
                 outlined
                 :type="isPasswordVisible ? 'text' : 'password'"
                 label="Password"
@@ -57,22 +87,7 @@
                 @click:append="isPasswordVisible = !isPasswordVisible"
                  class="mb-3 px-3"
               ></v-text-field>
-              <div class="d-flex align-center justify-space-between flex-wrap px-3">
-                <v-checkbox
-                  label="Remember Me"
-                  hide-details
-                  class="me-3 mt-1"
-                >
-                </v-checkbox>
-
-                <!-- forgot link -->
-                <a
-                  href="javascript:void(0)"
-                  class="mt-1"
-                >
-                  Forgot Password?
-                </a>
-              </div>
+             
             <v-card-actions>
               <v-spacer></v-spacer>
               <!-- <v-btn
@@ -85,36 +100,16 @@
               <v-btn
                 block
                 color="primary"
-                class="mt-6"
-              >
-                Login
-              </v-btn>
-               
-              <v-spacer></v-spacer>
-            </v-card-actions>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
-              >
-                Login
-              </v-btn> -->
-              <v-btn
-                block
-                color="primary"
-                class="mt-1"
-                @click="dialog = true"
+                class="mt-3"
+                @click="register()"
               >
                 Register
               </v-btn>
-               
+             
               <v-spacer></v-spacer>
             </v-card-actions>
-        <Register :dialog="dialog" @close="close()" />
-
         </v-card>
+      
         <v-snackbar
           v-model="snackbar"
           :timeout="timeout"
@@ -124,8 +119,8 @@
           >
           Error Credentials, Please try Again
         </v-snackbar>
-        
   </div>
+  </v-dialog>
 </template>
 
 
@@ -133,19 +128,16 @@
 
 
 <script>
-import Register from './dialogs/register.vue'
-import logo from '@/assets/images/logo.png'
-import { login } from "@/repositories/user.api";
-import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    
+    import logo from '@/assets/images/logo.png'
+    import { required, minLength, maxLength, between } from 'vuelidate'
+    import { Register } from "@/repositories/user.api";
+    import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 export default {
-   components : {
-      Register
-   },
+    name: 'register',
     data(){
         return {
             timeout: 1400,
-            dialog: false,
+          
             logo,
             email: '',
             password: '',
@@ -155,38 +147,38 @@ export default {
               mdiEyeOutline,
               mdiEyeOffOutline,
             },
+            payload: {
+              firstname : '',
+              lastname : '',
+              phone : '',
+              email : '',
+              password : ''
+            }
      
         }
     },
-    
-    methods: {
-      Login() {
-          
-                const login_data = {
-                    email: this.email,
-                    password: this.password
-                }
-              
-                  login(login_data).then(({data}) => {
-                      // this.$store.commit('login', data)
-                      localStorage.setItem('token', data.access_token)
-                      this.$router.push({ name: "dashboard"});
-                  }).catch((errors)=> {
-                      console.log(errors)
-                     this.snackbar = true
-                     
-                  })
-                        
-                    
+    validations : {
 
-                // if(this.email == '123@12.com' && this.password == '123'){
-                //   this.$router.push({ name: "dashboard" });
-                // }
-              
-            },
-            close() {
-              this.dialog = false;
-             }
+    },
+    props: {
+        dialog:{
+            required: true,
+            type: Boolean,
+            default: false
+        },
+        id:{
+            type:Number,
+        }
+    },
+    methods: {
+      register(){
+        let payload = this.payload
+        Register(payload).then((res)=> {
+           console.log(res)
+           this.$emit('close')
+
+        })
+      }
        
     }
 }
