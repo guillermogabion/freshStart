@@ -117,7 +117,7 @@
         this.$refs.form.reset()
       },
       resetValidation () {
-        this.$refs.form.resetValidation()
+        this.$refs.form.resetValidation() 
       },
     },
   }

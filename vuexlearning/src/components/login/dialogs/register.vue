@@ -9,13 +9,11 @@
         <v-card
           class="mx-auto"
           max-width="344"
-          
         >
             <v-list-item three-line>
               <v-list-item-content
               class="d-flex align-center justify-center py-7"
               >
-                
                 <v-img
                   :src="require('@/assets/images/logos/logo.svg')"
                   
@@ -23,37 +21,24 @@
                   max-width="150px"
                   alt="logo"
                 ></v-img>
-              
               </v-list-item-content>
-            </v-list-item
-            
+            </v-list-item>
+            <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
             >
-              <!-- <v-text-field
-                v-model="email"                   
-                color="purple darken-2"
-                label="Email"
-                type="email"
-                required
-                class="login-page-text-field"
-              ></v-text-field> -->
-              <!-- <v-text-field
-                v-model="password"          
-                color="blue darken-2"
-                label="Password"
-                type="password"
-                required
-                class="login-page-text-field"
-              ></v-text-field> -->
+
               <v-text-field
                 v-model="payload.firstname"
                 outlined
                 label="First Name"
-                v-validate:payload.firstname = "'required'"
-                data-vv-name="First Name" 
                 placeholder="John"
                 hide-details
                 class="mb-3 px-3"
-              ></v-text-field>
+                :rules="firstnameRules"
+              >
+              </v-text-field>
               <v-text-field
                 v-model="payload.lastname"
                 outlined
@@ -61,14 +46,16 @@
                 placeholder="Doe"
                 hide-details
                 class="mb-3 px-3"
+                :rules="lastnameRules"
               ></v-text-field>
-              <v-text-field
-                v-model="payload.password"
+               <v-text-field
+                v-model="payload.phone"
                 outlined
                 label="Phone"
                 placeholder="+639525565345"
                 hide-details
                 class="mb-3 px-3"
+                :rules="phoneRules"
               ></v-text-field>
               <v-text-field
                 v-model="payload.email"
@@ -77,7 +64,9 @@
                 placeholder="john@example.com"
                 hide-details
                 class="mb-3 px-3"
+                :rules="emailRules"
               ></v-text-field>
+
               <v-text-field
                 v-model="payload.password"
                 outlined
@@ -88,28 +77,17 @@
                 hide-details
                 @click:append="isPasswordVisible = !isPasswordVisible"
                  class="mb-3 px-3"
+                 :rules="passwordRules"
               ></v-text-field>
-             
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
-              >
-                Login
-              </v-btn> -->
               <v-btn
-                block
-                color="primary"
-                class="mt-3"
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
                 @click="register()"
               >
                 Register
               </v-btn>
-             
-              <v-spacer></v-spacer>
-            </v-card-actions>
+            </v-form>
         </v-card>
       
         <v-snackbar
@@ -124,21 +102,16 @@
   </div>
   </v-dialog>
 </template>
-
-
-
-
-
 <script>
     import logo from '@/assets/images/logo.png'
     // import { required, minLength, maxLength, between } from 'vuelidate'
-    import { Register } from "@/repositories/user.api";
+    // import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 export default {
     data(){
         return {
             timeout: 1400,
-          
+            valid: true,
             logo,
             email: '',
             password: '',
@@ -154,7 +127,23 @@ export default {
               phone : '',
               email : '',
               password : ''
-            }
+            },
+            firstnameRules: [
+              v => !!v || 'First Name is required',
+            ],
+            lastnameRules: [
+              v => !!v || 'Last Name is required',
+            ],
+            phoneRules: [
+              v => (v && v.length == 11) || 'Number must be 11 characters',
+            ],
+            emailRules: [
+              v => !!v || 'E-mail is required',
+              v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            ],
+            passwordRules: [
+              v => (v && v.length >= 8) || 'Password must be more than 8 characters',
+            ],
      
         }
     },
@@ -172,16 +161,17 @@ export default {
     methods: {
       register(){
 
-        this.$validator.validateAll().then(result => {
-          if(result){
-            let payload = this.payload
-            Register(payload).then((res)=> {
-               console.log(res)
-               this.$emit('close')
+        this.$refs.form.validate()
+        // .then(result => {
+        //   if(result){
+        //     let payload = this.payload
+        //     Register(payload).then((res)=> {
+        //        console.log(res)
+        //        this.$emit('close')
 
-            })
-          }
-        });
+        //     })
+        //   }
+        // });
         // let payload = this.payload
         // Register(payload).then((res)=> {
         //    console.log(res)

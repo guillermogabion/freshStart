@@ -26,6 +26,7 @@
   "dependencies": {
     "@capacitor/core": "^3.6.0",
     "@capacitor/splash-screen": "^1.2.2",
+    "@mdi/js": "^7.0.96",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
