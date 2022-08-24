@@ -61,6 +61,7 @@
                 maxlength="11"
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                 autocomplete="off"
+                type="number"
               ></v-text-field>
               <v-text-field
                 v-model="payload.email"
@@ -117,9 +118,9 @@
 <script>
     import logo from '@/assets/images/logo.png'
     // import { required, minLength, maxLength, between } from 'vuelidate'
-    // import { Register } from "@/repositories/user.api";
+    import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    import axios from '@/plugins/axios'
+    // import axios from '@/plugins/axios'
 export default {
     data(){
         return {
@@ -160,16 +161,22 @@ export default {
 
         this.$validator.validateAll().then(result => {
           if(result) {
-            axios.post('UserRegistration', this.payload).then(({data}) => {
-              console.log(data)
-              // this.$store.commit('UPDATE_NEW', true)
-              // this.dialog = true
-              // this. clearInput();
-              // this.closeUsersCreate()
-            }).catch((error)=> {
-              console.log(error)
-              // this.dialog_alert = true
-            });
+             let payload = this.payload
+              Register(payload).then((res)=> {
+                console.log(res)
+                this.$emit('close')
+
+              })
+            // axios.post('UserRegistration', this.payload).then(({data}) => {
+            //   console.log(data)
+            //   // this.$store.commit('UPDATE_NEW', true)
+            //   // this.dialog = true
+            //   // this. clearInput();
+            //   // this.closeUsersCreate()
+            // }).catch((error)=> {
+            //   console.log(error)
+            //   // this.dialog_alert = true
+            // });
           }
         });
       
