@@ -66,7 +66,9 @@ class UserController extends Controller
             $user->user_type = $request->user_type;
         }
         $user->save();
-        return $user;
+        return response()->json([
+            'message' => 'The provided credentials is incorrect'
+        ], 422);
 
     }
 

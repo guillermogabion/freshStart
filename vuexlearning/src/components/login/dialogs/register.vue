@@ -102,15 +102,34 @@
                  <v-spacer />
               </v-card-actions>
         </v-card>
+        <v-dialog
+          v-model="dialog_alert"
+          max-width="290"
+        >
+        <v-card>
+          <v-card-title class="headline">
+            Username/Email<br>entered Already Exist
+          </v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="dialog_alert = false"
+            >Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+        
       
         <v-snackbar
-          v-model="snackbar"
+          v-model="snackbar2"
           :timeout="timeout"
           color="error"
           top 
           right
           >
-          Error Credentials, Please try Again
+          Email or Phone Number entered is not Available
         </v-snackbar>
   </div>
   </v-dialog>
@@ -118,12 +137,14 @@
 <script>
     import logo from '@/assets/images/logo.png'
     // import { required, minLength, maxLength, between } from 'vuelidate'
-    import { Register } from "@/repositories/user.api";
+    // import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    // import axios from '@/plugins/axios'
+    import axios from '@/plugins/axios'
 export default {
     data(){
         return {
+            snackbar2: false,
+            dialog_alert: false,
             timeout: 1400,
             valid: true,
             logo,
@@ -158,27 +179,40 @@ export default {
     },
     methods: {
       register(){
-
-        this.$validator.validateAll().then(result => {
+       this.$validator.validateAll().then(result => {
           if(result) {
-             let payload = this.payload
-              Register(payload).then((res)=> {
-                console.log(res)
-                this.$emit('close')
-
-              })
-            // axios.post('UserRegistration', this.payload).then(({data}) => {
-            //   console.log(data)
-            //   // this.$store.commit('UPDATE_NEW', true)
-            //   // this.dialog = true
-            //   // this. clearInput();
-            //   // this.closeUsersCreate()
-            // }).catch((error)=> {
-            //   console.log(error)
-            //   // this.dialog_alert = true
-            // });
+            axios.post('UserRegistration', this.payload).then(({data}) => {
+              console.log(data)
+            }).catch((error)=> {
+              console.log(error)
+              this.dialog_alert = true
+            });
           }
         });
+        // this.$validator.validateAll().then(result => {
+        //   if(result) {
+        //      let payload = this.payload
+        //       Register(payload).then((res)=> {
+        //         console.log(res)
+        //         // this.$emit('close')
+        //         this.snackbar = true
+
+        //       }).catch(error => {
+        //         console.log(error.target.name)
+        //         this.dialog_alert = true
+        //       });
+        //     // axios.post('UserRegistration', this.payload).then(({data}) => {
+        //     //   console.log(data)
+        //     //   // this.$store.commit('UPDATE_NEW', true)
+        //     //   // this.dialog = true
+        //     //   // this. clearInput();
+        //     //   // this.closeUsersCreate()
+        //     // }).catch((error)=> {
+        //     //   console.log(error)
+        //     //   // this.dialog_alert = true
+        //     // });
+        //   }
+        // })
       
        
 
