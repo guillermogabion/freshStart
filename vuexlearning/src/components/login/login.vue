@@ -112,27 +112,7 @@
               
               <v-spacer></v-spacer>
             </v-card-actions>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
-              >
-                Login
-              </v-btn> -->
-              <v-btn
-                block
-                color="primary"
-                class="mt-1"
-                @click="dialog1 = true"
-              >
-                Test
-              </v-btn>
-               
-              
-              <v-spacer></v-spacer>
-            </v-card-actions>
+           
         <Register :dialog="dialog" @close="close()" />
         <Test :dialog="dialog1" @close="close()" />
 

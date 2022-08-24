@@ -8,7 +8,7 @@
   <div class="login-page">
         <v-card
           class="mx-auto"
-          max-width="344"
+          max-width="380"
         >
             <v-list-item three-line>
               <v-list-item-content
@@ -23,11 +23,7 @@
                 ></v-img>
               </v-list-item-content>
             </v-list-item>
-            <v-form
-            ref="form"
-            v-model="valid"
-            lazy-validation
-            >
+          
 
               <v-text-field
                 v-model="payload.firstname"
@@ -36,7 +32,9 @@
                 placeholder="John"
                 hide-details
                 class="mb-3 px-3"
-                :rules="firstnameRules"
+                v-validate="'required'"
+                :error-messages="errors.collect('First Name')"
+                data-vv-name="First Name" 
               >
               </v-text-field>
               <v-text-field
@@ -46,7 +44,9 @@
                 placeholder="Doe"
                 hide-details
                 class="mb-3 px-3"
-                :rules="lastnameRules"
+                v-validate="'required'"
+                :error-messages="errors.collect('Last Name')"
+                data-vv-name="Last Name"
               ></v-text-field>
                <v-text-field
                 v-model="payload.phone"
@@ -55,7 +55,12 @@
                 placeholder="+639525565345"
                 hide-details
                 class="mb-3 px-3"
-                :rules="phoneRules"
+                v-validate="'required|length:11'"
+                :error-messages="errors.collect('Phone Number')"
+                data-vv-name="Phone Number"
+                maxlength="11"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                autocomplete="off"
               ></v-text-field>
               <v-text-field
                 v-model="payload.email"
@@ -64,7 +69,9 @@
                 placeholder="john@example.com"
                 hide-details
                 class="mb-3 px-3"
-                :rules="emailRules"
+                v-validate="'required|email'"
+                :error-messages="errors.collect('Email')"
+                data-vv-name="Email"
               ></v-text-field>
 
               <v-text-field
@@ -77,17 +84,22 @@
                 hide-details
                 @click:append="isPasswordVisible = !isPasswordVisible"
                  class="mb-3 px-3"
-                 :rules="passwordRules"
+                 v-validate="'required|min:8'" 
+                :error-messages="errors.collect('Password')"
+                data-vv-name="Password"
               ></v-text-field>
-              <v-btn
-                :disabled="!valid"
-                color="success"
-                class="mr-4"
-                @click="register()"
-              >
-                Register
-              </v-btn>
-            </v-form>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn
+                  :disabled="!valid"
+                  color="success"
+                  class="mr-4"
+                  @click="register()"
+                >
+                  Register
+                </v-btn>
+                 <v-spacer />
+              </v-card-actions>
         </v-card>
       
         <v-snackbar
@@ -107,6 +119,7 @@
     // import { required, minLength, maxLength, between } from 'vuelidate'
     // import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
+    import axios from '@/plugins/axios'
 export default {
     data(){
         return {
@@ -128,23 +141,7 @@ export default {
               email : '',
               password : ''
             },
-            firstnameRules: [
-              v => !!v || 'First Name is required',
-            ],
-            lastnameRules: [
-              v => !!v || 'Last Name is required',
-            ],
-            phoneRules: [
-              v => (v && v.length == 11) || 'Number must be 11 characters',
-            ],
-            emailRules: [
-              v => !!v || 'E-mail is required',
-              v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
-            passwordRules: [
-              v => (v && v.length >= 8) || 'Password must be more than 8 characters',
-            ],
-     
+           
         }
     },
     
@@ -161,8 +158,24 @@ export default {
     methods: {
       register(){
 
-        this.$refs.form.validate()
-        // .then(result => {
+        this.$validator.validateAll().then(result => {
+          if(result) {
+            axios.post('UserRegistration', this.payload).then(({data}) => {
+              console.log(data)
+              // this.$store.commit('UPDATE_NEW', true)
+              // this.dialog = true
+              // this. clearInput();
+              // this.closeUsersCreate()
+            }).catch((error)=> {
+              console.log(error)
+              // this.dialog_alert = true
+            });
+          }
+        });
+      
+       
+
+        // this.$validator.validateAll().then(result => {
         //   if(result){
         //     let payload = this.payload
         //     Register(payload).then((res)=> {

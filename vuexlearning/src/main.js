@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 import axios from '@/plugins/axios'
 import general from '@/mixins/general'
 import titleMixin from './mixins/titleMixin'
-// import * as VeeValidate from 'vee-validate';
+import * as VeeValidate from 'vee-validate';
 // import moment from 'moment'
 // import general from '@/mixins/general'
 // import VueChart from 'vue-chart-js'
@@ -17,8 +17,7 @@ Vue.mixin(titleMixin)
 // Vue.prototype.moment = moment
 
 // Vue.config.productionTip = false
-// Vue.use(VeeValidate)
-
+Vue.use(VeeValidate)
 // Vue.use(VueChart)
 Vue.mixin(general)
 
