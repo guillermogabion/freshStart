@@ -5,6 +5,20 @@
     hide-overlay
     transition="dialog-top-transition"
 >
+<v-card>
+        <div
+          style="padding-left: 1em ; padding-top: 1em"
+        >
+          <v-btn
+            fab
+            dark
+            small
+            color="indigo"
+            @click = "close()"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
   <div class="login-page">
         <v-card
           class="mx-auto"
@@ -132,14 +146,15 @@
           Email or Phone Number entered is not Available
         </v-snackbar>
   </div>
+  </v-card>
   </v-dialog>
 </template>
 <script>
     import logo from '@/assets/images/logo.png'
     // import { required, minLength, maxLength, between } from 'vuelidate'
-    // import { Register } from "@/repositories/user.api";
+    import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    import axios from '@/plugins/axios'
+    // import axios from '@/plugins/axios'
 export default {
     data(){
         return {
@@ -180,13 +195,17 @@ export default {
     methods: {
       register(){
        this.$validator.validateAll().then(result => {
-          if(result) {
-            axios.post('UserRegistration', this.payload).then(({data}) => {
-              console.log(data)
+          if(result) { 
+            let payload = this.payload
+            // axios.post('UserRegistration', this.payload).then(({data}) => {
+            //   console.log(data)
+             Register(payload).then((res)=> {
+              console.log(res)
             }).catch((error)=> {
               console.log(error)
               this.dialog_alert = true
             });
+            // this.$emit('close')
           }
         });
         // this.$validator.validateAll().then(result => {
@@ -232,6 +251,9 @@ export default {
         //    this.$emit('close')
 
         // })
+      },
+      close(){
+        this.$emit('close')
       }
        
     }
@@ -244,7 +266,7 @@ export default {
 <style>
 .login-page {
 
-  padding-top : 10em;
+  padding-top : 6em;
 }
 .login-page-text-field{
   padding: 0.5em;
