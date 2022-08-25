@@ -100,29 +100,38 @@
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
 
-            { icon: 'mdi mdi-account-edit', text: 'Class Record' },
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' },
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' },
+            { icon: 'mdi mdi-book-open-variant', text: 'Class Record' },
+            { icon: 'mdi mdi-book-open-page-variant', text: 'Subjects' },
+            { icon: 'mdi mdi-notebook-multiple', text: 'Examination PDFs' },
+            { icon: 'mdi mdi-message-processing', text: 'Messages' },
           ],
         },
         {
           
-          icon: 'mdi-settings',
-          'icon-alt': 'mdi-settings',
+          icon: 'mdi mdi-database',
+          'icon-alt': 'mdi mdi-database',
           text: 'Registrar',
           model: false,
           children: [
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+             { icon: 'mdi mdi-notebook-multiple', text: 'Enrollment' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Classes'},
+             { icon: 'mdi mdi-book-open-variant', text: 'Students' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Instructors' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Grades' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Transcripts' },
           ],
         },
         {
           
-          icon: 'mdi-settings',
-          'icon-alt': 'mdi-settings',
+          icon: 'mdi mdi-notebook-multiple',
+          'icon-alt': 'mdi mdi-notebook-multiple',
           text: 'Librarian',
           model: false,
           children: [
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Book Record' },
+             { icon: 'mdi mdi-book-check-outline', text: 'Borrowed'},
+             { icon: 'mdi mdi-book-open-variant', text: 'Overdue' },
           ],
         },
         {
