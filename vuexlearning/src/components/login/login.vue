@@ -92,6 +92,7 @@
                 block
                 color="primary"
                 class="mt-6"
+                @click = "Login()"
               >
                 Login
               </v-btn>
@@ -177,7 +178,6 @@ export default {
                     email: this.email,
                     password: this.password
                 }
-              
                   login(login_data).then(({data}) => {
                       // this.$store.commit('login', data)
                       localStorage.setItem('token', data.access_token)

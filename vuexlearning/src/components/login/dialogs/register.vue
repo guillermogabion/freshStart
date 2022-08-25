@@ -143,7 +143,16 @@
           top 
           right
           >
-          Email or Phone Number entered is not Available
+          Register Failed, Phone or Email not Available
+        </v-snackbar>
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="timeout"
+          color="success"
+          top 
+          right
+          >
+          Register Success, Wait for SMS notification for Approval
         </v-snackbar>
   </div>
   </v-card>
@@ -152,9 +161,9 @@
 <script>
     import logo from '@/assets/images/logo.png'
     // import { required, minLength, maxLength, between } from 'vuelidate'
-    import { Register } from "@/repositories/user.api";
+    // import { Register } from "@/repositories/user.api";
     import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    // import axios from '@/plugins/axios'
+    import axios from '@/plugins/axios'
 export default {
     data(){
         return {
@@ -196,14 +205,16 @@ export default {
       register(){
        this.$validator.validateAll().then(result => {
           if(result) { 
-            let payload = this.payload
-            // axios.post('UserRegistration', this.payload).then(({data}) => {
-            //   console.log(data)
-             Register(payload).then((res)=> {
-              console.log(res)
+            // let payload = this.payload
+            axios.post('UserRegistration', this.payload).then(({data}) => {
+              console.log(data)
+            //  Register(payload).then((res)=> {
+            //   console.log(res)
+            this.snackbar = true
+            this.clear()
             }).catch((error)=> {
               console.log(error)
-              this.dialog_alert = true
+              this.snackbar2 = true
             });
             // this.$emit('close')
           }
@@ -254,6 +265,16 @@ export default {
       },
       close(){
         this.$emit('close')
+      },
+      clear(){
+        this.payload = {
+          firstname : '',
+          lastname : '',
+          phone : '',
+          email : '',
+          password : ''
+        },
+        this.$validator.reset();
       }
        
     }

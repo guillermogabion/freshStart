@@ -22,8 +22,13 @@ export default new Vuex.Store({
     right_drawer:null,
     component_requested: '',
     user: {
-      is_admin: 1
+      is_admin: 1,
+      is_instructor : 2,
+      is_librarian : 3,
+      is_registrar : 4,
+      is_student : 0
     },
+   
     token: '',
     email: '',
     permissions: [],
