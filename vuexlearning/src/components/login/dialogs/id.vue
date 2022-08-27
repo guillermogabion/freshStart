@@ -1,11 +1,20 @@
 <template>
-  <div class="login-page">
-      <v-btn
+<v-dialog
+    v-model="dialog"
+    fullscreen
+    hide-overlay
+    transition="dialog-top-transition"
+>
+<v-card
+   
+>
+    <v-btn
             icon
             dark
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
+        <div class="login-page">
         <v-card
           class="mx-auto"
           max-width="344"
@@ -30,10 +39,9 @@
             >
            
               <v-text-field
-                v-model="email"
+                v-model="idnumber"
                 outlined
-                label="Email"
-                placeholder="john@example.com"
+                label="ID Number"
                 hide-details
                 class="mb-3 px-3"
               ></v-text-field>
@@ -61,9 +69,9 @@
                 small 
                 text
                 class="display"
-                 @click="dialog2 = true"
+                 @click="close()"
                 >
-                Login with ID
+                Login with Email
                 </v-btn>
               </div>
             <v-card-actions>
@@ -88,29 +96,13 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
-              >
-                Login
-              </v-btn> -->
-              <v-btn
-                block
-                color="primary"
-                class="mt-1"
-                @click="dialog = true"
-              >
-                Register
-              </v-btn>
+             
+              
               
               <v-spacer></v-spacer>
             </v-card-actions>
            
-        <Register :dialog="dialog" @close="close()" />
-        <Test :dialog="dialog1" @close="close()" />
-        <ID :dialog="dialog2" @close="close()" />
-
+       
         </v-card>
         <v-snackbar
           v-model="snackbar"
@@ -121,55 +113,48 @@
           >
           Error Credentials, Please try Again
         </v-snackbar>
-        
-  </div>
+</div>
+</v-card>
+</v-dialog>
 </template>
-
-
-
-
-
 <script>
-import Register from './dialogs/register.vue'
-import ID from './dialogs/id.vue'
-import Test from './dialogs/test.vue'
 import logo from '@/assets/images/logo.png'
-import { login } from "@/repositories/user.api";
+import { loginID } from "@/repositories/user.api";
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-    
 export default {
-   components : {
-      Register,
-      Test,
-      ID
-   },
-    data(){
+    data() {
         return {
             timeout: 1400,
-            dialog: false,
-            dialog1: false,
-            dialog2: false,
-            logo,
-            email: '',
+            idnumber: '',
             password: '',
+            logo,
             snackbar:false,
             isPasswordVisible: false,
             icons: {
               mdiEyeOutline,
               mdiEyeOffOutline,
             },
-     
+        }
+        
+    },
+    props : {
+        dialog : {
+            required: true,
+            type : Boolean,
+            default: false
+        },
+        id: {
+            type:Number,
         }
     },
-    
     methods: {
-      Login() {
+        Login() {
           
                 const login_data = {
-                    email: this.email,
+                    idnumber: this.idnumber,
                     password: this.password
                 }
-                  login(login_data).then(({data}) => {
+                  loginID(login_data).then(({data}) => {
                       // this.$store.commit('login', data)
                       localStorage.setItem('token', data.access_token)
                       this.$router.push({ name: "dashboard"});
@@ -186,23 +171,17 @@ export default {
                 // }
               
             },
-            close() {
-              this.dialog = false;
-              this.dialog1 = false;
-              this.dialog2 = false;
-             }
-       
-    }
+         close(){
+        this.$emit('close')
+      },
+    },
 }
-
-
-
 </script>
 
 <style>
 .login-page {
 
-  padding-top : 10em;
+  padding-top : 6em;
 }
 .login-page-text-field{
   padding: 0.5em;
@@ -218,11 +197,7 @@ export default {
   padding-left: 10%;
   padding-right: 10%;
 }
-.display {
-   min-width: 0;
-}
 
 
 
 </style>
-

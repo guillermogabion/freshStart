@@ -26,11 +26,13 @@ export default new Vuex.Store({
       is_instructor : 2,
       is_librarian : 3,
       is_registrar : 4,
+      is_executive : 5,
       is_student : 0
     },
    
     token: '',
     email: '',
+    id_number: '',
     permissions: [],
     deadlines_changed: false,
     revisions_flag:false ,

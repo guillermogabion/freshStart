@@ -29,6 +29,13 @@
                 }
                 return flag
             },
+            $is_executive() {
+                let flag = false 
+                if(this.$store.state.user.user_type == 5 ) {
+                    flag = true
+                }
+                return flag
+            },
             $is_student() {
                 let flag = false 
                 if(this.$store.state.user.user_type == 0 ) {

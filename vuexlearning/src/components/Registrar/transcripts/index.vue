@@ -1,5 +1,5 @@
 <template>
     <div>
-        this is Orders
+        I am Transcript
     </div>
 </template>

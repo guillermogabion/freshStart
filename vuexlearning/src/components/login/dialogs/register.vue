@@ -205,63 +205,20 @@ export default {
       register(){
        this.$validator.validateAll().then(result => {
           if(result) { 
-            // let payload = this.payload
+          
             axios.post('UserRegistration', this.payload).then(({data}) => {
               console.log(data)
-            //  Register(payload).then((res)=> {
-            //   console.log(res)
+         
             this.snackbar = true
             this.clear()
             }).catch((error)=> {
               console.log(error)
               this.snackbar2 = true
             });
-            // this.$emit('close')
+          
           }
         });
-        // this.$validator.validateAll().then(result => {
-        //   if(result) {
-        //      let payload = this.payload
-        //       Register(payload).then((res)=> {
-        //         console.log(res)
-        //         // this.$emit('close')
-        //         this.snackbar = true
-
-        //       }).catch(error => {
-        //         console.log(error.target.name)
-        //         this.dialog_alert = true
-        //       });
-        //     // axios.post('UserRegistration', this.payload).then(({data}) => {
-        //     //   console.log(data)
-        //     //   // this.$store.commit('UPDATE_NEW', true)
-        //     //   // this.dialog = true
-        //     //   // this. clearInput();
-        //     //   // this.closeUsersCreate()
-        //     // }).catch((error)=> {
-        //     //   console.log(error)
-        //     //   // this.dialog_alert = true
-        //     // });
-        //   }
-        // })
-      
        
-
-        // this.$validator.validateAll().then(result => {
-        //   if(result){
-        //     let payload = this.payload
-        //     Register(payload).then((res)=> {
-        //        console.log(res)
-        //        this.$emit('close')
-
-        //     })
-        //   }
-        // });
-        // let payload = this.payload
-        // Register(payload).then((res)=> {
-        //    console.log(res)
-        //    this.$emit('close')
-
-        // })
       },
       close(){
         this.$emit('close')

@@ -1,5 +1,5 @@
 <template>
     <div>
-        this is Payments
+        I am programs
     </div>
 </template>

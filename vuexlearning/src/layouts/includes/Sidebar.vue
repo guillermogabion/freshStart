@@ -3,9 +3,9 @@
     :value="drawer"
     :clipped="$vuetify.breakpoint.lgAndUp"
     app
-    style="min-height:100vh !important;"
+    style="top:8px !important;min-height:100vh !important;"
   >
-    <div style="padding-top: 10px;">
+
       <v-img 
         contain
          :src="require('@/assets/images/logos/logo.svg')"
@@ -14,7 +14,7 @@
         max-width="200"
         class="mx-auto"
       />
-    </div>
+ 
     <v-list dense>
       <template v-for="item in items">
         <v-row
@@ -91,6 +91,22 @@
         { icon: 'mdi-view-dashboard', text: 'Dashboard' ,url:'/' },
       
       
+
+        {
+          
+          icon: 'mdi mdi-database',
+          'icon-alt': 'mdi mdi-database',
+          text: 'Registrar',
+          model: false,
+          children: [
+            { icon: 'mdi mdi-notebook-multiple', text: 'Admission', url:'/registrar/admission' },
+             { icon: 'mdi mdi-google-classroom', text: 'Programs', url:'/registrar/programs'},
+             { icon: 'mdi mdi-account-group', text: 'Students', url:'/registrar/students' },
+             { icon: 'mdi mdi-account-tie', text: 'Instructors', url:'/registrar/instructors' },
+             { icon: 'mdi mdi-chart-bar', text: 'Grades Record', url:'/registrar/grades'},
+             { icon: 'mdi mdi-clipboard-multiple', text: 'Transcripts', url:'/registrar/transcripts' },
+          ],
+        },
         {
           
           icon: 'mdi mdi-account-tie',
@@ -100,25 +116,10 @@
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
 
-            { icon: 'mdi mdi-book-open-variant', text: 'Class Record' },
-            { icon: 'mdi mdi-book-open-page-variant', text: 'Subjects' },
-            { icon: 'mdi mdi-notebook-multiple', text: 'Examination PDFs' },
-            { icon: 'mdi mdi-message-processing', text: 'Messages' },
-          ],
-        },
-        {
-          
-          icon: 'mdi mdi-database',
-          'icon-alt': 'mdi mdi-database',
-          text: 'Registrar',
-          model: false,
-          children: [
-             { icon: 'mdi mdi-notebook-multiple', text: 'Enrollment' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Classes'},
-             { icon: 'mdi mdi-book-open-variant', text: 'Students' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Instructors' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Grades' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Transcripts' },
+            { icon: 'mdi mdi-book-open-variant', text: 'Class Record', url:'/instructor/class_record' },
+            { icon: 'mdi mdi-book-open-page-variant', text: 'Subjects', url:'/instructor/subject' },
+            { icon: 'mdi mdi-notebook-multiple', text: 'Examination PDFs', url:'/instructor/examination' },
+            { icon: 'mdi mdi-message-processing', text: 'Messages', url:'/instructor/messages' },
           ],
         },
         {
@@ -131,39 +132,64 @@
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
              { icon: 'mdi mdi-book-open-variant', text: 'Book Record' },
              { icon: 'mdi mdi-book-check-outline', text: 'Borrowed'},
-             { icon: 'mdi mdi-book-open-variant', text: 'Overdue' },
+             { icon: 'mdi-sticker-remove', text: 'Overdue' },
           ],
         },
         {
           
-          icon: 'mdi-settings',
-          'icon-alt': 'mdi-settings',
+          icon: 'mdi mdi-text-box-multiple',
+          'icon-alt': 'mdi mdi-text-box-multiple',
           text: 'Subject',
           model: false,
           children: [
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Subject Details' },
+             { icon: 'mdi mdi-book-check-outline', text: 'Subject Referrences'},
           ],
         },
         {
           
-          icon: 'mdi-settings',
-          'icon-alt': 'mdi-settings',
+          icon: 'mdi mdi-account-star',
+          'icon-alt': 'mdi mdi-account-star',
+          text: 'Executive',
+          model: false,
+          children: [
+            // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            { icon: 'mdi mdi-book-check', text: 'For Approval' },
+            { icon: 'mdi mdi-account-tie-voice', text: 'Post Announcement'},
+            { icon: 'mdi mdi-message-processing', text: 'Messages'},
+          ],
+        },
+        {
+          
+          icon: 'mdi mdi-account-group-outline',
+          'icon-alt': 'mdi mdi-account-group-outline',
           text: 'Student',
           model: false,
           children: [
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            { icon: 'mdi mdi-book-check', text: 'Class' },
+            { icon: 'mdi mdi-account-tie-voice', text: 'Submissions'},
+            { icon: 'mdi mdi-chart-bar', text: 'Grades'},
+            { icon: 'mdi mdi-message-processing', text: 'Messages'},
           ],
         },
         {
           
-          icon: 'mdi-settings',
-          'icon-alt': 'mdi-settings',
-          text: 'Settings',
+          icon: 'mdi mdi-account-tie',
+          'icon-alt': 'mdi mdi-account-tie',
+          text: 'Admin',
           model: false,
           children: [
-            { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+            // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
+
+            { icon: 'mdi mdi-account-cog-outline', text: 'Student Settings' },
+            { icon: 'mdi mdi-account-cog', text: 'Instructor Settings' },
+            { icon: 'mdi mdi-notebook-multiple', text: 'Subject Settings' },
+            { icon: 'mdi mdi-message-processing', text: 'Messages' },
           ],
         },
+        { icon: 'mdi mdi-alert-rhombus', text: 'Announcements' },
       ],
       newOrderRecords:0
     }),
@@ -175,10 +201,11 @@
     methods:{
       itemChecker(item){
         let user_accepts = ['Dashboard','Settings1' ]
-        let instructor_accepts = ['Dashboard', 'Instructor']
-        let registrar_accepts = ['Dashboard', 'Registrar']
-        let librarian_accepts = ['Dashboard', 'Librarian']
-        let student_accepts = ['Dashboard', 'Student']
+        let instructor_accepts = ['Dashboard', 'Instructor','Announcements']
+        let registrar_accepts = ['Dashboard', 'Registrar','Announcements']
+        let librarian_accepts = ['Dashboard', 'Librarian','Announcements']
+        let executive_accepts = ['Dashboard', 'Executive','Announcements']
+        let student_accepts = ['Dashboard', 'Student','Announcements']
         if(this.$is_admin()){
           return true
         }
@@ -190,6 +217,9 @@
         }
         if(this.$is_librarian()){
           return librarian_accepts.includes(item)
+        }
+        if(this.$is_executive()){
+          return executive_accepts.includes(item)
         }
         if(this.$is_student()){
           return student_accepts.includes(item)

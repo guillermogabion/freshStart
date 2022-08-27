@@ -1,5 +1,5 @@
 <template>
     <div>
-        this is Purchases
+        I am Grades
     </div>
 </template>
