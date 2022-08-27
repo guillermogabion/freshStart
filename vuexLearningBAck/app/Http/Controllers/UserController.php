@@ -24,16 +24,36 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $login = $this->validate($request, [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ]);
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
+        
+        // return $user;
         if (!Auth::attempt( $login ))
         {
             return response(['message' => 'login Credentials are incorrect'], 401);
         }
         $token = $user->createToken('authToken')->accessToken;
         return response(['user' => Auth::user(), 'access_token' => $token] );
+       
+    }
+    public function loginID(Request $request)
+    {
+        $login = $this->validate($request, [
+            'idnumber' => 'required',
+            'password' => 'required',
+        ]);
+        $user = User::where('idnumber', $request->idnumber)->first();
+        
+        // return $user;
+        if (!Auth::attempt( $login ))
+        {
+            return response(['message' => 'login Credentials are incorrect'], 401);
+        }
+        $token = $user->createToken('authToken')->accessToken;
+        return response(['user' => Auth::user(), 'access_token' => $token] );
+       
     }
     
     public function logout(Request $request)
@@ -46,8 +66,6 @@ class UserController extends Controller
 
     public function saveNew(Request $request) 
     {
-
-
         $user = New User;
         $request->validate([
             'firstname' => 'required',
@@ -145,6 +163,30 @@ class UserController extends Controller
         return response()->json(['message'=>'success']);
     }
 
+    public function newEnrollee(Request $request){
+        $user = New User;
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'guardian' => 'required',
+            'religion' => 'required',
+            'civil_status' => 'required',
+            'email' => 'required|email|unique:users,email,',
+            'phone' => 'required|unique:users,phone,'
 
-
+        ]);
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->guardian = $request->guardian;
+        $user->religion = $request->religion;
+        $user->civil_status = $request->civil_status;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+        $user->user_type = 0;
+        $user->save();
+        return $user();
+    }
 }

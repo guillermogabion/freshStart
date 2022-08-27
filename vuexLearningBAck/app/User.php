@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,4 +39,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // public function findForPassport($idnumber){
+    //     return $this->where(fn($q)=> $q->where('idnumber', $idnumber)->orWhere('email', $idnumber))->first();
+    // }
 }

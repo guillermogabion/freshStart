@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('loginTest','UserController@loginTrial');
 Route::post('login','UserController@login');
+Route::post('loginID','UserController@loginID');
 Route::post('UserRegistration','UserController@saveNew');
 Route::post('addMeal', 'MealController@addMeal');
 
@@ -33,17 +34,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('users/pagination','UserController@pagination');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
 
-    // meal 
-    Route::post('updateMeal/{id}', 'MealController@updateMeal');
-    Route::post('updateMealNoPic/{id}', 'MealController@updateMealNoPic');
-    Route::delete('removeMeal', 'MealController@removeMeal');
-    // Route::get('searchMeal', 'MealController@searchMeal');
-    Route::get('meals/pagination', 'MealController@pagination');
-    
-    // scheduledishes 
-    Route::post('addDishSchedule', 'ScheduledDishController@addDishSchedule');
-    Route::post('updateScheduledDish/{id}', 'ScheduledDishController@updateScheduledDish');
-    Route::post('deleteScheduledDish/{id}', 'ScheduledDishController@deleteScheduledDish');
+    //Registrar
+    Route::post('new-enrollee', 'UserController@newEnrollee');
+   
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
