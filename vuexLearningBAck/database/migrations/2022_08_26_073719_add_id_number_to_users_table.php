@@ -15,7 +15,7 @@ class AddIdNumberToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('id_number')->after('id');
+            $table->string('id_number')->after('id')->nullable();
         });
     }
 

@@ -39,7 +39,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+ 
     // public function findForPassport($idnumber){
     //     return $this->where(fn($q)=> $q->where('idnumber', $idnumber)->orWhere('email', $idnumber))->first();
+    // }
+
+    // public function getIdNumberAttribute() {
+    //     return sprintf("%05d", $this->attributes['id_number']);
+    // }
+    // public function getTotalUserAttribute(){
+
+    //     return count($this->users);
     // }
 }

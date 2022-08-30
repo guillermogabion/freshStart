@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 class UserController extends Controller
 {
     //
@@ -77,12 +77,11 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->user_type = 1;
         if($request->password){
             $user->password = Hash::make($request->password);
         }
-        if($request->user_type){
-            $user->user_type = $request->user_type;
-        }
+        
         $user->save();
         return $user;
 
@@ -101,33 +100,8 @@ class UserController extends Controller
         return $user;
 
     }
-    public function pagination(Request $request){
-        $users = User::query();
-        $users->where('user_type', 0);
-        if($request->input('keyword') != ""){
-            $keyword = $request->input('keyword');
-            $users->where(function($query) use($keyword){
-                $query   ->where('firstname', 'LIKE', "%$keyword%");
-                      
-            });
-        }
-        return $users->orderBy('firstname', 'asc')->paginate(10);
-    }
-    public function search(Request $request) 
-    {
-        $user = User::query();
-        $user->where('user_type', 0);
-        if ($request->input('searchkey') != "") {
-            $keyword = $request->input('searchkey');
-            $user->where(function($query) use($keyword) {
-                $query  ->where('firstname', 'LIKE', "%$keyword%")
-                        ->orWhere('lastname', 'LIKE', "%$keyword%")
-                        ->orWhere('email', 'LIKE', "%$keyword%");
-                         
-            });
-        }
-        return $user->orderBy('first_name', 'asc')->get();
-    }
+
+   
 
     public function deleteUser($id){
         $user = User::find($id);
@@ -165,18 +139,19 @@ class UserController extends Controller
 
     public function newEnrollee(Request $request){
         $user = New User;
-        $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'guardian' => 'required',
-            'religion' => 'required',
-            'civil_status' => 'required',
-            'email' => 'required|email|unique:users,email,',
-            'phone' => 'required|unique:users,phone,'
-
-        ]);
+       
+        $user->id_number = $request->id_number;
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
+        $user->date_birth = $request->date_birth;
+        $user->place_birth = $request->place_birth;
+        $user->nationality = $request->nationality;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->course = $request->course;
+        $user->year = $request->year;
+        $user->contact = $request->contact;
+        $user->contact_guardian = $request->contact_guardian;
         $user->guardian = $request->guardian;
         $user->religion = $request->religion;
         $user->civil_status = $request->civil_status;
@@ -187,6 +162,43 @@ class UserController extends Controller
         }
         $user->user_type = 0;
         $user->save();
-        return $user();
+        return $user;
     }
+
+    public function IDnumber(){
+        $date = Carbon::now()->format('y');
+        $randomNumber = random_int(1000, 9999);
+        $id = $date . $randomNumber;
+        return $id();
+    }
+
+    public function search(Request $request) 
+    {
+        $user = User::query();
+        $user->where('user_type', 0);
+        if ($request->input('searchkey') != "") {
+            $keyword = $request->input('searchkey');
+            $user->where(function($query) use($keyword) {
+                $query  ->where('firstname', 'LIKE', "%$keyword%")
+                        ->orWhere('lastname', 'LIKE', "%$keyword%")
+                        ->orWhere('email', 'LIKE', "%$keyword%");
+                         
+            });
+        }
+        return $user->orderBy('lastname', 'asc')->get();
+    }
+
+    public function pagination(Request $request){
+        $users = User::query();
+        $users->where('user_type', 0);
+        if($request->input('keyword') != ""){
+            $keyword = $request->input('keyword');
+            $users->where(function($query) use($keyword){
+                $query   ->where('firstname', 'LIKE', "%$keyword%");
+                      
+            });
+        }
+        return $users->orderBy('lastname', 'asc')->paginate(10);
+    }
+   
 }

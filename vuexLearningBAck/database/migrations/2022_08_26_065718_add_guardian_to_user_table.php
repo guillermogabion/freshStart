@@ -14,9 +14,9 @@ class AddGuardianToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('guardian')->after('lastname');
-            $table->string('religion')->after('guardian');
-            $table->string('civil_status')->after('religion');
+            $table->string('guardian')->after('lastname')->nullable();
+            $table->string('religion')->after('guardian')->nullable();
+            $table->string('civil_status')->after('religion')->nullable();
             $table->string('request')->after('civil_status')->nullable();
 
             //

@@ -28,22 +28,22 @@ Route::middleware('auth:api')->group(function () {
     
 
     Route::get('user', 'UserController@index');
-        // user
+    // user
+    
+    Route::post('new-enrollee', 'UserController@newEnrollee');
     Route::post('saveNew', 'UserController@saveNew');
     Route::post('editUser/{id}', 'UserController@editUser');
-    Route::get('users/pagination','UserController@pagination');
+    Route::get('student/pagination','UserController@pagination');
+    Route::post('searchStudent', 'UserController@search');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
-
+    
     //Registrar
-    Route::post('new-enrollee', 'UserController@newEnrollee');
-   
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('new', 'UserController@new');
 
-Route::get('getScheduledDish', 'ScheduledDishController@scheduledDish');
-
-
-Route::get('getAllMeal', 'MealController@getAllMeal');
+Route::get('IDnumber', 'UserController@IDnumber');
