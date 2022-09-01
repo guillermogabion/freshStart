@@ -51,4 +51,12 @@ class User extends Authenticatable
 
     //     return count($this->users);
     // }
+    public function getFullNameAttribute($value){
+        return ucwords($this->firstname .' '. $this->lastname) ;
+    }
+    public function getPhotoAttribute($value){
+        if($value){
+            return asset('images/profile/'. $value);
+        }
+    }
 }

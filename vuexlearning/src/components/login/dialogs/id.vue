@@ -5,9 +5,7 @@
     hide-overlay
     transition="dialog-top-transition"
 >
-<v-card
-   
->
+<v-card>
     <v-btn
             icon
             dark
@@ -34,9 +32,7 @@
                 ></v-img>
               
               </v-list-item-content>
-            </v-list-item
-            
-            >
+            </v-list-item>
            
               <v-text-field
                 v-model="idnumber"
@@ -163,13 +159,6 @@ export default {
                      this.snackbar = true
                      
                   })
-                        
-                    
-
-                // if(this.email == '123@12.com' && this.password == '123'){
-                //   this.$router.push({ name: "dashboard" });
-                // }
-              
             },
          close(){
         this.$emit('close')

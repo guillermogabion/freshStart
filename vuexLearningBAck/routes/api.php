@@ -35,9 +35,13 @@ Route::middleware('auth:api')->group(function () {
     Route::post('editUser/{id}', 'UserController@editUser');
     Route::get('student/pagination','UserController@pagination');
     Route::post('searchStudent', 'UserController@search');
+    Route::get('instructor/pagination','UserController@paginationInstructor');
+    Route::post('searchInstructor', 'UserController@searchInstructor');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
-    
+    Route::get('show/{id}','UserController@show');
+    Route::post('edit-profile/{id}', 'UserController@editProfile');
     //Registrar
+    
     
 });
 
@@ -46,4 +50,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('new', 'UserController@new');
 
-Route::get('IDnumber', 'UserController@IDnumber');
+Route::get('approval-request/{id_number}', 'UserController@ApprovalRequest');
+Route::get('number', 'UserController@number');

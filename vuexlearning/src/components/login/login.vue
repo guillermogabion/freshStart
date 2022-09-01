@@ -26,87 +26,138 @@
               
               </v-list-item-content>
             </v-list-item
-            
             >
-           
-              <v-text-field
-                v-model="email"
-                outlined
-                label="Email"
-                placeholder="john@example.com"
-                hide-details
-                class="mb-3 px-3"
-              ></v-text-field>
-              <v-text-field
-                v-model="password"
-                outlined
-                :type="isPasswordVisible ? 'text' : 'password'"
-                label="Password"
-                placeholder="············"
-                :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-                hide-details
-                @click:append="isPasswordVisible = !isPasswordVisible"
-                 class="mb-3 px-3"
-              ></v-text-field>
-              <div class="d-flex align-center justify-space-between flex-wrap px-3">
-                <v-checkbox
-                  label="Remember Me"
-                  hide-details
-                  class="me-3 mt-1"
-                >
-                </v-checkbox>
-
-                <!-- forgot link -->
-                <v-btn
-                small 
-                text
-                class="display"
-                 @click="dialog2 = true"
-                >
-                Login with ID
-                </v-btn>
-              </div>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
+            
+            <v-tabs
+              v-model="tab"
+              background-color="transparent"
+              color="basil"
+              grow
+              class="padd"
+            >
+              <v-tab
+                v-for="item in items"
+                :key="item"
               >
-                Login
-              </v-btn> -->
-              <v-btn
-                block
-                color="primary"
-                class="mt-6"
-                @click = "Login()"
-              >
-                Login
-              </v-btn>
-               
-              <v-spacer></v-spacer>
-            </v-card-actions>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <!-- <v-btn
-                outlined  
-                @click="Login()"
-                color="primary"
-              >
-                Login
-              </v-btn> -->
-              <v-btn
-                block
-                color="primary"
-                class="mt-1"
-                @click="dialog = true"
-              >
-                Register
-              </v-btn>
+                {{ item }}
+              </v-tab>
+            </v-tabs>
+            <v-card>
+              <v-tabs-items v-model="tab">
+              <!-- email login  -->
+                <v-tab-item>
+                  <v-card
+                  class="v-card-padding"
+                  >
+                      <v-text-field
+                        v-model="email"
+                        outlined
+                        label="Email"
+                        placeholder="john@example.com"
+                        hide-details
+                        class="mb-3 px-3"
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="password"
+                        outlined
+                        :type="isPasswordVisible ? 'text' : 'password'"
+                        label="Password"
+                        placeholder="············"
+                        :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
+                        hide-details
+                        @click:append="isPasswordVisible = !isPasswordVisible"
+                        class="mb-3 px-3"
+                      ></v-text-field>
+                      <div class="d-flex align-center justify-space-between flex-wrap px-3">
+                        <v-checkbox
+                          label="Remember Me"
+                          hide-details
+                          class="me-3 mt-1"
+                        >
+                        </v-checkbox>
+                        <!-- forgot link -->
+                      </div>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                    
+                      <v-btn
+                        block
+                        color="primary"
+                        class="mt-6"
+                        @click = "Login()"
+                      >
+                        Login
+                      </v-btn>
+                      
+                      <v-spacer></v-spacer>
+                    </v-card-actions>
+                    
+            
+                  </v-card>
+                </v-tab-item>
+                <!-- ID login  -->
+                <v-tab-item>
+                  <v-card
+                  class="v-card-padding"
+                  >
+                    <v-text-field
+                      v-model="idnumber"
+                      outlined
+                      label="ID Number"
+                      hide-details
+                      class="mb-3 px-3"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="passwordID"
+                      outlined
+                      :type="isPasswordVisible ? 'text' : 'password'"
+                      label="Password"
+                      placeholder="············"
+                      :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
+                      hide-details
+                      @click:append="isPasswordVisible = !isPasswordVisible"
+                      class="mb-3 px-3"
+                    ></v-text-field>
+                    <div class="d-flex align-center justify-space-between flex-wrap px-3">
+                      <v-checkbox
+                        label="Remember Me"
+                        hide-details
+                        class="me-3 mt-1"
+                      >
+                      </v-checkbox>
+                      <!-- forgot link -->
+                    </div>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    
+                    <v-btn
+                      block
+                      color="primary"
+                      class="mt-6"
+                      @click = "LoginID()"
+                    >
+                      Login
+                    </v-btn>
+                  </v-card-actions>
+                  </v-card>
+                </v-tab-item>
+              </v-tabs-items>
+              <v-card-actions>
+                <v-spacer></v-spacer>
               
-              <v-spacer></v-spacer>
-            </v-card-actions>
-           
+                <v-btn
+                  block
+                  color="primary"
+                  class="mt-1"
+                  @click="dialog = true"
+                >
+                  Register
+                </v-btn>
+                
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+                  
         <Register :dialog="dialog" @close="close()" />
         <Test :dialog="dialog1" @close="close()" />
         <ID :dialog="dialog2" @close="close()" />
@@ -135,6 +186,7 @@ import ID from './dialogs/id.vue'
 import Test from './dialogs/test.vue'
 import logo from '@/assets/images/logo.png'
 import { login } from "@/repositories/user.api";
+import { loginID } from "@/repositories/user.api";
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
     
 export default {
@@ -145,6 +197,7 @@ export default {
    },
     data(){
         return {
+            tab: null, 
             timeout: 1400,
             dialog: false,
             dialog1: false,
@@ -152,45 +205,54 @@ export default {
             logo,
             email: '',
             password: '',
+            passwordID: '',
             snackbar:false,
             isPasswordVisible: false,
             icons: {
               mdiEyeOutline,
               mdiEyeOffOutline,
             },
+            items: [
+              'Email', 'ID Number',
+            ],
      
         }
     },
     
     methods: {
       Login() {
-          
-                const login_data = {
-                    email: this.email,
-                    password: this.password
-                }
-                  login(login_data).then(({data}) => {
-                      // this.$store.commit('login', data)
-                      localStorage.setItem('token', data.access_token)
-                      this.$router.push({ name: "dashboard"});
-                  }).catch((errors)=> {
-                      console.log(errors)
-                     this.snackbar = true
-                     
-                  })
-                        
-                    
-
-                // if(this.email == '123@12.com' && this.password == '123'){
-                //   this.$router.push({ name: "dashboard" });
-                // }
+          const login_data = {
+              email: this.email,
+              password: this.password
+          }
+          login(login_data).then(({data}) => {
+              // this.$store.commit('login', data)
+              localStorage.setItem('token', data.access_token)
+              this.$router.push({ name: "dashboard"});
+          }).catch((errors)=> {
+              console.log(errors)
+              this.snackbar = true
               
-            },
-            close() {
-              this.dialog = false;
-              this.dialog1 = false;
-              this.dialog2 = false;
-             }
+          })
+        },
+        LoginID() {
+          const login_data = {
+            id_number: this.idnumber,
+            password: this.passwordID
+          }
+          loginID(login_data).then(({data}) => {
+            localStorage.setItem('token', data.access_token)
+            this.$router.push({ name: "dashboard"});
+          }).catch((errors)=> {
+            console.log(errors)
+            this.snackbar = true
+          })
+        },
+        close() {
+          this.dialog = false;
+          this.dialog1 = false;
+          this.dialog2 = false;
+          }
        
     }
 }
@@ -220,6 +282,12 @@ export default {
 }
 .display {
    min-width: 0;
+}
+.padd {
+  padding-bottom: 1em;
+}
+.v-card-padding {
+  padding-top: 1em;
 }
 
 

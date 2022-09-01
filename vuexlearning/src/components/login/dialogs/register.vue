@@ -37,84 +37,101 @@
                 ></v-img>
               </v-list-item-content>
             </v-list-item>
-          
-
-              <v-text-field
-                v-model="payload.firstname"
-                outlined
-                label="First Name"
-                placeholder="John"
-                hide-details
-                class="mb-3 px-3"
-                v-validate="'required'"
-                :error-messages="errors.collect('First Name')"
-                data-vv-name="First Name" 
+            <v-card>
+              <v-card
+              style="padding-top: 1.5em;"
               >
-              </v-text-field>
-              <v-text-field
-                v-model="payload.lastname"
-                outlined
-                label="Last Name"
-                placeholder="Doe"
-                hide-details
-                class="mb-3 px-3"
-                v-validate="'required'"
-                :error-messages="errors.collect('Last Name')"
-                data-vv-name="Last Name"
-              ></v-text-field>
-               <v-text-field
-                v-model="payload.phone"
-                outlined
-                label="Phone"
-                placeholder="+639525565345"
-                hide-details
-                class="mb-3 px-3"
-                v-validate="'required|length:11'"
-                :error-messages="errors.collect('Phone Number')"
-                data-vv-name="Phone Number"
-                maxlength="11"
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                autocomplete="off"
-                type="number"
-              ></v-text-field>
-              <v-text-field
-                v-model="payload.email"
-                outlined
-                label="Email"
-                placeholder="john@example.com"
-                hide-details
-                class="mb-3 px-3"
-                v-validate="'required|email'"
-                :error-messages="errors.collect('Email')"
-                data-vv-name="Email"
-              ></v-text-field>
-
-              <v-text-field
-                v-model="payload.password"
-                outlined
-                :type="isPasswordVisible ? 'text' : 'password'"
-                label="Password"
-                placeholder="············"
-                :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-                hide-details
-                @click:append="isPasswordVisible = !isPasswordVisible"
-                 class="mb-3 px-3"
-                 v-validate="'required|min:8'" 
-                :error-messages="errors.collect('Password')"
-                data-vv-name="Password"
-              ></v-text-field>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn
-                  :disabled="!valid"
-                  color="success"
-                  class="mr-4"
-                  @click="register()"
+                  <v-text-field
+                  v-model="payload.firstname"
+                  outlined
+                  label="First Name"
+                  placeholder="John"
+                  hide-details
+                  class="mb-3 px-3"
+                  v-validate="'required'"
+                  :error-messages="errors.collect('First Name')"
+                  data-vv-name="First Name" 
                 >
-                  Register
-                </v-btn>
-                 <v-spacer />
-              </v-card-actions>
+                </v-text-field>
+                <v-text-field
+                  v-model="payload.lastname"
+                  outlined
+                  label="Last Name"
+                  placeholder="Doe"
+                  hide-details
+                  class="mb-3 px-3"
+                  v-validate="'required'"
+                  :error-messages="errors.collect('Last Name')"
+                  data-vv-name="Last Name"
+                ></v-text-field>
+                <v-text-field
+                  v-model="payload.phone"
+                  outlined
+                  label="Phone"
+                  placeholder="+639525565345"
+                  hide-details
+                  class="mb-3 px-3"
+                  v-validate="'required|length:11'"
+                  :error-messages="errors.collect('Phone Number')"
+                  data-vv-name="Phone Number"
+                  maxlength="11"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  autocomplete="off"
+                  type="number"
+                ></v-text-field>
+                <v-select 
+                class="mb-1 px-3"
+                style="padding-bottom: 5px; ;"
+                v-model="types"               
+                hide-details 
+                :items="user_type" 
+                item-text="type"  
+                item-value="number"
+                persistent-hint
+                return-object
+                outlined 
+                label="User Type">
+                </v-select> 
+                <v-text-field
+                  v-model="payload.email"
+                  outlined
+                  label="Email"
+                  placeholder="john@example.com"
+                  hide-details
+                  class="mb-3 px-3"
+                  v-validate="'required|email'"
+                  :error-messages="errors.collect('Email')"
+                  data-vv-name="Email"
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="payload.password"
+                  outlined
+                  :type="isPasswordVisible ? 'text' : 'password'"
+                  label="Password"
+                  placeholder="············"
+                  :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
+                  hide-details
+                  @click:append="isPasswordVisible = !isPasswordVisible"
+                  class="mb-3 px-3"
+                  v-validate="'required|min:8'" 
+                  :error-messages="errors.collect('Password')"
+                  data-vv-name="Password"
+                ></v-text-field>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    class="mr-4"
+                    @click="register()"
+                  >
+                    Register
+                  </v-btn>
+                  <v-spacer />
+                </v-card-actions>
+              </v-card>
+            </v-card>
         </v-card>
         <v-dialog
           v-model="dialog_alert"
@@ -187,6 +204,19 @@ export default {
               email : '',
               password : ''
             },
+            formRequest : {
+              id :''
+            },
+            items: [
+              'New User', 'Request Access',
+            ],
+            user_type:[
+                {type: 'Instructor', number:'2', icon:'mdi-alert-circle'},
+                {type: 'Librarian', number:'3', icon:'mdi-alert-circle'},
+                {type: 'Registrar', number:'4', icon:'mdi-alert-circle'},
+                {type: 'Executive', number:'5', icon:'mdi-alert-circle'},
+            ],
+            tab: null
            
         }
     },

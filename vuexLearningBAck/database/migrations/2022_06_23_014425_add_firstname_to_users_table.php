@@ -17,7 +17,7 @@ class AddFirstnameToUsersTable extends Migration
             //
             $table->string('firstname')->after('id')->nullable();
             $table->string('lastname')->after('firstname')->nullable();
-            $table->string('phone')->after('email')->nullable();
+            // $table->string('phone')->after('email')->nullable();
         });
     }
 

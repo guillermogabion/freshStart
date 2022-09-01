@@ -17,7 +17,7 @@ class AddGuardianToUserTable extends Migration
             $table->string('guardian')->after('lastname')->nullable();
             $table->string('religion')->after('guardian')->nullable();
             $table->string('civil_status')->after('religion')->nullable();
-            $table->string('request')->after('civil_status')->nullable();
+            $table->string('request')->after('civil_status')->default(0);
 
             //
         });

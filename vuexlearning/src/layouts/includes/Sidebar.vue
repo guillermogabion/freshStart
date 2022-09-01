@@ -130,9 +130,9 @@
           model: false,
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Book Record' },
-             { icon: 'mdi mdi-book-check-outline', text: 'Borrowed'},
-             { icon: 'mdi-sticker-remove', text: 'Overdue' },
+             { icon: 'mdi mdi-book-open-variant', text: 'Book Record', url:'/library/book_record' },
+             { icon: 'mdi mdi-book-check-outline', text: 'Borrowed', url:'/library/borrowed'},
+             { icon: 'mdi-sticker-remove', text: 'Overdue', url:'/library/overdue' },
           ],
         },
         {
@@ -143,8 +143,8 @@
           model: false,
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
-             { icon: 'mdi mdi-book-open-variant', text: 'Subject Details' },
-             { icon: 'mdi mdi-book-check-outline', text: 'Subject Referrences'},
+             { icon: 'mdi mdi-book-open-variant', text: 'Subject Details' , url:'/subject/details'  },
+            //  { icon: 'mdi mdi-book-check-outline', text: 'Subject Referrences'},
           ],
         },
         {
@@ -155,9 +155,9 @@
           model: false,
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
-            { icon: 'mdi mdi-book-check', text: 'For Approval' },
-            { icon: 'mdi mdi-account-tie-voice', text: 'Post Announcement'},
-            { icon: 'mdi mdi-message-processing', text: 'Messages'},
+            { icon: 'mdi mdi-book-check', text: 'For Approval', url:'/executive/approval' },
+            { icon: 'mdi mdi-account-tie-voice', text: 'Post Announcement', url:'/executive/announcement'},
+            { icon: 'mdi mdi-message-processing', text: 'Messages', url:'/executive/messages'},
           ],
         },
         {
@@ -168,10 +168,10 @@
           model: false,
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
-            { icon: 'mdi mdi-book-check', text: 'Class' },
-            { icon: 'mdi mdi-account-tie-voice', text: 'Submissions'},
-            { icon: 'mdi mdi-chart-bar', text: 'Grades'},
-            { icon: 'mdi mdi-message-processing', text: 'Messages'},
+            { icon: 'mdi mdi-book-check', text: 'Class', url:'/student/class' },
+            { icon: 'mdi mdi-account-tie-voice', text: 'Submissions', url:'/student/submission'},
+            { icon: 'mdi mdi-chart-bar', text: 'Grades', url:'/student/grade'},
+            { icon: 'mdi mdi-message-processing', text: 'Messages', url:'/student/messages'},
           ],
         },
         {
@@ -183,13 +183,14 @@
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
 
-            { icon: 'mdi mdi-account-cog-outline', text: 'Student Settings' },
-            { icon: 'mdi mdi-account-cog', text: 'Instructor Settings' },
-            { icon: 'mdi mdi-notebook-multiple', text: 'Subject Settings' },
-            { icon: 'mdi mdi-message-processing', text: 'Messages' },
+            { icon: 'mdi mdi-account-cog-outline', text: 'Student Settings' ,  url:'/admin/student_setting' },
+            { icon: 'mdi mdi-account-cog', text: 'Instructor Settings' ,  url:'/admin/instructor_setting' },
+            { icon: 'mdi mdi-notebook-multiple', text: 'Subject Settings', url:'/admin/subject_setting' },
+            { icon: 'mdi mdi-message-processing', text: 'Class Setting', url: '/admin/class_setting' },
+            { icon: 'mdi mdi-message-processing', text: 'Messages', url: '/admin/messages' },
           ],
         },
-        { icon: 'mdi mdi-alert-rhombus', text: 'Announcements' },
+        { icon: 'mdi mdi-alert-rhombus', text: 'Announcements', url: '/announcement' },
       ],
       newOrderRecords:0
     }),
