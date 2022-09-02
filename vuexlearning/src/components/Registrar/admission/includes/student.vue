@@ -216,6 +216,10 @@ import Update from './drawer/edit.vue'
           this.$nextTick(() => {
             this.dialog2 = true
         })
+        },
+        close(){
+          this.dialog2 = false
+          this.indexStudent()
         }
     },
   }

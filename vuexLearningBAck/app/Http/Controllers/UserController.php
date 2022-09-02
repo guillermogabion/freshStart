@@ -318,7 +318,35 @@ class UserController extends Controller
             $imageName = date("YmdHis"). '.' . 'jpeg';
             file_put_contents(public_path() . '/' . 'images/profile/' . $imageName, $data);
             $user->photo = $imageName ;
+
          } 
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+        $user->user_type = 0;
+        $user->save();
+        return $user;
+
+    }
+    public function editProfileNoPic(Request $request, $id){
+        $user = User::findorfail($id);
+        $user->id_number = $request->id_number;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->date_birth = $request->date_birth;
+        $user->place_birth = $request->place_birth;
+        $user->nationality = $request->nationality;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->course = $request->course;
+        $user->year = $request->year;
+        $user->contact = $request->contact;
+        $user->contact_guardian = $request->contact_guardian;
+        $user->guardian = $request->guardian;
+        $user->religion = $request->religion;
+        $user->civil_status = $request->civil_status;
+        $user->email = $request->email;
+        
         if($request->password){
             $user->password = Hash::make($request->password);
         }

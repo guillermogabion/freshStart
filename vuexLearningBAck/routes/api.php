@@ -40,7 +40,12 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('deleteUser/{id}','UserController@deleteUser');
     Route::get('show/{id}','UserController@show');
     Route::post('edit-profile/{id}', 'UserController@editProfile');
+    Route::post('edit-profile-nopic/{id}', 'UserController@editProfileNoPic');
     //Registrar
+    Route::get('index-program','ProgramController@indexPrograms');
+    Route::get('add-program','ProgramController@ProgramsAdd');
+    Route::get('update-program', 'ProgramController@ProgramsUpdate');
+    Route::post('searchProgram','ProgramController@searchProgram');
     
     
 });

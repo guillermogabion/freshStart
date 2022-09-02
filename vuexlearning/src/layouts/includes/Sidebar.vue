@@ -42,9 +42,12 @@
               v-for="(child, i) in item.children"
               :key="i"
               link :to="child.url"
+              
             >
               <v-list-item-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
+                <v-icon
+                class="left"
+                >{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content class="content">
                 <v-list-item-title>
@@ -99,10 +102,8 @@
           text: 'Registrar',
           model: false,
           children: [
-            { icon: 'mdi mdi-notebook-multiple', text: 'Admission', url:'/registrar/admission' },
+             { icon: 'mdi mdi-notebook-multiple', text: 'Admission', url:'/registrar/admission' },
              { icon: 'mdi mdi-google-classroom', text: 'Programs', url:'/registrar/programs'},
-             { icon: 'mdi mdi-account-group', text: 'Students', url:'/registrar/students' },
-             { icon: 'mdi mdi-account-tie', text: 'Instructors', url:'/registrar/instructors' },
              { icon: 'mdi mdi-chart-bar', text: 'Grades Record', url:'/registrar/grades'},
              { icon: 'mdi mdi-clipboard-multiple', text: 'Transcripts', url:'/registrar/transcripts' },
           ],
@@ -239,6 +240,9 @@
 <style>
 .content {
   padding-left: 2em;
+}
+.left {
+  padding-left: 1em;
 }
 </style>
 

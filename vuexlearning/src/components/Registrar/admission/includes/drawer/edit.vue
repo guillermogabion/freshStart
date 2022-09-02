@@ -2,9 +2,10 @@
     <v-dialog
             v-model="dialog"
             persistent
-            width="45%"
+            width="50%"
           >
           <v-card
+          width="150%"
           >
             <v-card-title class="text-h5 grey lighten-2 mb-2">
                Edit Profile
@@ -15,6 +16,7 @@
                     class="pa-3"
                     outlined
                     tile
+                    width="auto"
                     >
                         <v-text-field
                         v-model="payload.firstname"
@@ -124,6 +126,7 @@
                                         type="file"
                                         @change="onFileChange"
                                         style="padding-left: 20%;"
+                                        class="custom-file-input"
                                     />
                                 </label>
                             </div>
@@ -183,7 +186,7 @@
 </template>
 <script>
 import logo from '@/assets/images/profile.jpg'
-import { Show, SaveUpdate } from '@/repositories/registrar.api'
+import { Show, SaveUpdate, SaveUpdateNoPic } from '@/repositories/registrar.api'
 export default {
     data(){
         return {
@@ -262,9 +265,40 @@ export default {
             });
         },
         editUser(){
-            SaveUpdate(this.payload.id, this.payload).then(({response})=> {
-                console.log(response.data)
-            })
+            const imageLabel = document.getElementById('fileData');
+
+            if(imageLabel.value == ''){
+                SaveUpdateNoPic(this.payload.id, this.payload).then(({response})=> {
+                console.log(response)
+                this.clear()
+                })  
+            }else{
+                    SaveUpdate(this.payload.id, this.payload).then(({response})=> {
+                    console.log(response)
+                    this.clear()
+                })
+            }
+
+            
+        },
+        clear(){
+            this.payload.id = ""
+            this.payload.firstname = ""
+            this.payload.lastname = ""
+            this.payload.email = ""
+            this.payload.contact = ""
+            this.payload.gender = ""
+            this.payload.nationality = ""
+            this.payload.civil_status = ""
+            this.payload.date_birth = ""
+            this.payload.place_birth = ""
+            this.payload.course = ""
+            this.payload.year = ""
+            this.payload.guardian = ""
+            this.payload.contact_guardian = ""
+            this.payload.address = ""
+            this.payload.photo = ""
+            this.$emit('close')
         }
     },
 }
