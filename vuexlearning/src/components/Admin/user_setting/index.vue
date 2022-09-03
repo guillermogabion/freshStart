@@ -3,7 +3,7 @@
         <v-card
         max-height="80%"
         min-height="80%"
-        v-if="$is_registrar()"
+        v-if="$is_admin()"
         >
           <!-- <v-data-table
                 :headers="headers"
@@ -55,7 +55,6 @@
 import Student from './includes/student.vue'
 import Instructor from './includes/instructor.vue'
 import error from '@/assets/images/404-pages.jpg'
-
 export default {
     components : {
         Student,

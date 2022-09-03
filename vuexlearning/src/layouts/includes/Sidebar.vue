@@ -184,8 +184,7 @@
           children: [
             // { icon: 'mdi mdi-account-edit', text: 'User Settings' , url:'/user' },
 
-            { icon: 'mdi mdi-account-cog-outline', text: 'Student Settings' ,  url:'/admin/student_setting' },
-            { icon: 'mdi mdi-account-cog', text: 'Instructor Settings' ,  url:'/admin/instructor_setting' },
+            { icon: 'mdi mdi-account-cog-outline', text: 'User Settings' ,  url:'/admin/user_setting' },
             { icon: 'mdi mdi-notebook-multiple', text: 'Subject Settings', url:'/admin/subject_setting' },
             { icon: 'mdi mdi-message-processing', text: 'Class Setting', url: '/admin/class_setting' },
             { icon: 'mdi mdi-message-processing', text: 'Messages', url: '/admin/messages' },

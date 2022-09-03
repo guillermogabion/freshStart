@@ -2,7 +2,7 @@
     <div>
         <v-data-table
             :headers="headers"
-            :items="program"
+            :items="subject"
             class="elevation-1"
             hide-default-footer
             :loading="loading"
@@ -11,7 +11,7 @@
                 <v-toolbar
                 flat
                 >
-                    <v-toolbar-title>Programs</v-toolbar-title>
+                    <v-toolbar-title>Subject Course</v-toolbar-title>
                     <v-divider
                     class="mx-4"
                     inset
@@ -26,7 +26,7 @@
                         dense
                         style="padding-top: 40px; padding-right: 10px;"
                         v-model="search"
-                        :items='program'
+                        :items='subject'
                         ></v-text-field>
                     <v-btn
                     v-model="dialog"
@@ -40,7 +40,7 @@
                     </v-btn>
                 </v-toolbar>
             </template>
-            <!-- <template v-slot:item.actions="{ item }">
+            <template v-slot:item.actions="{ item }">
             <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -54,37 +54,17 @@
                 <v-list>
                 <v-list-item class="dd">
                     <v-btn icon>
-                    <v-icon
+                    <!-- <v-icon
                         small
                         color="green"
                         @click="edit(item.id)"
                     >mdi-pencil</v-icon>
-                    </v-btn>
-                    <v-btn icon> 
-                    <v-icon
-                        small
-                        color="red"
-                        @click="lock(item)"
-                    >mdi-lock</v-icon>
-                    </v-btn>
-                    <v-btn icon> 
-                    <v-icon
-                        small
-                        color="red"
-                        @click="deleteItem(item)"
-                    >mdi-delete</v-icon>
-                    </v-btn>
-                    <v-btn icon> 
-                    <v-icon
-                        small
-                        color="blue"
-                        @click="addBirthday(item)"
-                    >mdi-star-circle</v-icon>
-                    </v-btn>
+                    </v-btn> -->
+                    
                 </v-list-item>
                 </v-list>
             </v-menu>
-            </template> -->
+            </template>
         </v-data-table>
     </div>
 </template>
@@ -97,11 +77,11 @@
         data(){
             return {
                 headers: [
-                    { text : 'Program ID', value: 'program_id', sortable: false},
-                    { text : 'Program Name', value: 'program'},
-                    { text : 'Program Description', value: 'description'}
+                    { text : 'Course ID', value: 'subject_id', sortable: false},
+                    { text : 'Course Name', value: 'subject'},
+                    { text : 'Course Description', value: 'description'}
                 ],
-                program: [],
+                subject: [],
                 loading: false,
                 search: '',
                 dialog: false
@@ -110,18 +90,18 @@
         watch : {
             "search": {
                 handler(val){
-                    this.searchProgram(val)
+                    this.searchSubject(val)
                 },
                 deep: true,
             }
         },
         mounted() {
-            this.searchProgram();2
+            this.searchSubject();
         },
         methods: {
-            searchProgram(key) {
-                axios.post('searchProgram', {searchkey:key}).then((response) => {
-                this.program = response.data 
+            searchSubject(key) {
+                axios.post('searchSubject', {searchkey:key}).then((response) => {
+                this.subject = response.data 
                 this.loading = false
                 }).catch((errors) => {
                 console.log(errors)

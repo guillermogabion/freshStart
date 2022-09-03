@@ -29,8 +29,7 @@ import Student_Submission from '@/components/Student/submissions/index.vue'
 import Student_Grades from '@/components/Student/grade/index.vue'
 import Student_Messages from '@/components/Student/messages/index.vue'
 // admin 
-import Admin_StudentSetting from '@/components/Admin/student_setting/index.vue'
-import Admin_InstructorSetting from '@/components/Admin/instructor_setting/index.vue'
+import Admin_UserSetting from '@/components/Admin/user_setting/index.vue'
 import Admin_ClassSetting from '@/components/Admin/class_setting/index.vue'
 import Admin_SubjectSetting from '@/components/Admin/subject_setting/index.vue'
 import Admin_Messages from '@/components/Admin/messages/index.vue'
@@ -202,17 +201,12 @@ export default [{
         meta: { authOnly: true }
     },
     {
-        path: '/admin/student_setting',
-        name: 'student_setting',
-        component: Admin_StudentSetting,
+        path: '/admin/user_setting',
+        name: 'user_setting',
+        component: Admin_UserSetting,
         meta: { authOnly: true }
     },
-    {
-        path: '/admin/instructor_setting',
-        name: 'instructor_setting',
-        component: Admin_InstructorSetting,
-        meta: { authOnly: true }
-    },
+   
     {
         path: '/admin/subject_setting',
         name: 'subject_setting',

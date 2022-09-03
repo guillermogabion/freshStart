@@ -45,7 +45,51 @@
             </v-btn>
         </v-toolbar>
     </template>
-   
+    <template v-slot:item.actions="{ item }">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item class="dd">
+            <v-btn icon>
+              <v-icon
+                small
+                color="green"
+                @click="edit(item.id)"
+              >mdi-pencil</v-icon>
+            </v-btn>
+              <v-btn icon> 
+              <v-icon
+                small
+                color="red"
+                @click="lock(item)"
+              >mdi-lock</v-icon>
+            </v-btn>
+            <v-btn icon> 
+              <v-icon
+                small
+                color="red"
+                @click="deleteItem(item)"
+              >mdi-delete</v-icon>
+            </v-btn>
+              <v-btn icon> 
+              <v-icon
+                small
+                color="blue"
+                @click="addBirthday(item)"
+              >mdi-star-circle</v-icon>
+            </v-btn>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </template>
   </v-data-table>
   <div class="text-center pt-2">
     <v-pagination
@@ -96,6 +140,7 @@ import Update from './drawer/edit.vue'
         { text: 'Year', value: 'year' },
         { text: 'Address', value: 'address' },
         { text: 'Contact', value: 'contact' },
+        { text: 'Actions', value: 'actions', sortable: false },
       ],
       student: [],
       search : '',

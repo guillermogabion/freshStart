@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('user', 'UserController@index');
     // user
     
+    //Registrar
     Route::post('new-enrollee', 'UserController@newEnrollee');
     Route::post('saveNew', 'UserController@saveNew');
     Route::post('editUser/{id}', 'UserController@editUser');
@@ -41,11 +42,17 @@ Route::middleware('auth:api')->group(function () {
     Route::get('show/{id}','UserController@show');
     Route::post('edit-profile/{id}', 'UserController@editProfile');
     Route::post('edit-profile-nopic/{id}', 'UserController@editProfileNoPic');
-    //Registrar
     Route::get('index-program','ProgramController@indexPrograms');
     Route::get('add-program','ProgramController@ProgramsAdd');
     Route::get('update-program', 'ProgramController@ProgramsUpdate');
     Route::post('searchProgram','ProgramController@searchProgram');
+
+    // subject 
+    Route::get('index-subject','SubjectController@indexPrograms');
+    Route::get('add-subject','SubjectController@subjectAdd');
+    Route::get('update-subject', 'SubjectController@SubjectUpdate');
+    Route::post('searchSubject','SubjectController@searchSubject');
+
     
     
 });
