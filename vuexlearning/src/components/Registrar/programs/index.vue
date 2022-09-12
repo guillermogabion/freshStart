@@ -1,5 +1,8 @@
 <template>
     <div>
+        <v-card
+        v-if="$is_registrar() || $is_admin()"
+        >
         <v-data-table
             :headers="headers"
             :items="program"
@@ -86,10 +89,22 @@
             </v-menu>
             </template> -->
         </v-data-table>
+    </v-card>
+    <v-card
+        elevation="0"
+        v-else>
+            <v-spacer></v-spacer>
+            <v-img
+                style="width: 90%; height: 50%;"
+                :src="error"
+            ></v-img>
+            <v-spacer></v-spacer>
+        </v-card>
     </div>
 </template>
 <script>
     import axios from '@/plugins/axios'
+    import error from '@/assets/images/404-pages.jpg'
     export default {
         components : {
 
@@ -104,7 +119,8 @@
                 program: [],
                 loading: false,
                 search: '',
-                dialog: false
+                dialog: false,
+                error
             }
         },
         watch : {
@@ -126,6 +142,7 @@
                 }).catch((errors) => {
                 console.log(errors)
                 });
+               
             },
         },
 

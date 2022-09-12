@@ -3,7 +3,7 @@
         <v-card
         max-height="80%"
         min-height="80%"
-        v-if="$is_registrar()"
+        v-if="$is_registrar() || $is_admin()"
         >
           <!-- <v-data-table
                 :headers="headers"

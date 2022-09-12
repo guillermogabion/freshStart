@@ -54,12 +54,12 @@
                 <v-list>
                 <v-list-item class="dd">
                     <v-btn icon>
-                    <!-- <v-icon
+                    <v-icon
                         small
                         color="green"
                         @click="edit(item.id)"
                     >mdi-pencil</v-icon>
-                    </v-btn> -->
+                    </v-btn>
                     
                 </v-list-item>
                 </v-list>

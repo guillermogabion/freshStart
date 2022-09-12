@@ -10,3 +10,4 @@ export const Show = (id) => axios.get('show/' + id)
 export const SaveUpdate = (id, payload)=>axios.post(`edit-profile/${id}`, payload)
 export const SaveUpdateNoPic = (id, payload)=>axios.post(`edit-profile-nopic/${id}`, payload)
 
+

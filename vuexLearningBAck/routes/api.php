@@ -64,3 +64,4 @@ Route::post('new', 'UserController@new');
 
 Route::get('approval-request/{id_number}', 'UserController@ApprovalRequest');
 Route::get('number', 'UserController@number');
+Route::get('getsched', 'ClassScheduleController@index');

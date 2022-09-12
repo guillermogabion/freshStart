@@ -105,7 +105,7 @@ export default [{
     },
     {
         path: '/instructor/subject',
-        name: 'subject',
+        name: 'Instructor',
         component: Instructor_Subject,
         meta: { authOnly: true }
     },
@@ -157,13 +157,13 @@ export default [{
     },
     {
         path: '/executive/announcement',
-        name: 'announcement',
+        name: 'announcementExecutive',
         component: Executive_Announcement,
         meta: { authOnly: true }
     },
     {
         path: '/executive/messages',
-        name: 'messages',
+        name: 'messagesExecutive',
         component: Executive_Messages,
         meta: { authOnly: true }
     },
@@ -188,7 +188,7 @@ export default [{
     },
     {
         path: '/student/messages',
-        name: 'messages',
+        name: 'messagesStudent',
         component: Student_Messages,
         meta: { authOnly: true }
     },
@@ -215,7 +215,7 @@ export default [{
     },
     {
         path: '/admin/messages',
-        name: 'messages',
+        name: 'messagesAdmin',
         component: Admin_Messages,
         meta: { authOnly: true }
     },

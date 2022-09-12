@@ -236,12 +236,15 @@
   }
 </script>
 
-<style>
+<style scoped>
 .content {
   padding-left: 2em;
 }
 .left {
   padding-left: 1em;
+}
+v-navigation-drawer {
+  color: green !important;
 }
 </style>
 
