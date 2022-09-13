@@ -1,10 +1,18 @@
 <template>
   <v-navigation-drawer
+        :value="drawer"
+        app
+        :mini-variant.sync="drawer"
+        permanent
+        color="#002C34"
+  >
+  <!-- <v-navigation-drawer
     :value="drawer"
     :clipped="$vuetify.breakpoint.lgAndUp"
-    app
-    style="top:8px !important;min-height:100vh !important;"
-  >
+    permanent
+    expand-on-hover
+    style="top:0px !important;min-height:100vh !important;"
+  > -->
 
       <v-img 
         contain
@@ -15,7 +23,7 @@
         class="mx-auto"
       />
  
-    <v-list dense>
+    <v-list nav dark>
       <template v-for="item in items">
         <v-row
           v-if="item.heading"
@@ -236,16 +244,10 @@
   }
 </script>
 
-<style scoped>
-.content {
-  padding-left: 2em;
-}
-.left {
-  padding-left: 1em;
-}
-v-navigation-drawer {
-  color: green !important;
-}
+<style lang="scss">
+
+  @import '@/scss/sidebar.scss';
+
 </style>
 
 

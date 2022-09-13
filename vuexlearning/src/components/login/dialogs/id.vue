@@ -71,7 +71,7 @@
                 </v-btn>
               </div>
             <v-card-actions>
-              <v-spacer></v-spacer>
+              
               <!-- <v-btn
                 outlined  
                 @click="Login()"
@@ -88,7 +88,6 @@
                 Login
               </v-btn>
                
-              <v-spacer></v-spacer>
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>

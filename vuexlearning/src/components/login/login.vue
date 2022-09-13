@@ -1,11 +1,6 @@
 <template>
   <div class="login-page">
-      <v-btn
-            icon
-            dark
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
+      
         <v-card
           class="mx-auto"
           max-width="344"

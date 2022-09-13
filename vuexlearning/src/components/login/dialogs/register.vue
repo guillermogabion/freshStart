@@ -119,8 +119,8 @@
                   data-vv-name="Password"
                 ></v-text-field>
                 <v-card-actions>
-                  <v-spacer />
                   <v-btn
+                    block
                     :disabled="!valid"
                     color="success"
                     class="mr-4"
@@ -128,7 +128,6 @@
                   >
                     Register
                   </v-btn>
-                  <v-spacer />
                 </v-card-actions>
               </v-card>
             </v-card>
