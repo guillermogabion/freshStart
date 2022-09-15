@@ -27,14 +27,15 @@ class SubjectController extends Controller
     }
     public function searchSubject(Request $request) 
     {
-        $subject = Subject  ::query();
-        if ($request->input('searchkey') != "") {
-            $keyword = $request->input('searchkey');
-            $subject->where(function($query) use($keyword) {
-                $query   ->where('subject_id', 'LIKE', "%$keyword%")
-                            ->orWhere('subject','LIKE', "%$keyword%"); 
+        $subject = Subject::query();
+       
+        if($request->input('keyword') != ""){
+            $keyword = $request->input('keyword');
+            $subject->where(function($query) use($keyword){
+                $query   ->where('subject', 'LIKE', "%$keyword%");
+                      
             });
         }
-        return $subject->orderBy('created_at', 'desc')->get();
+        return $subject->orderBy('subject', 'desc')->paginate(10);
     }
 }

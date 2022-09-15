@@ -16,7 +16,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: () => ({
-    sidebar:true,
+    sidebar:false,
     logged_in: false,
     self_requested: false,
     right_drawer:null,
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     newUpdateRecords:false,
     newUpdate:false,
     requested_id: 0,
-    drawer: null
+    drawer: false
   }),
   mutations: {
     toggleSideBar(state){
@@ -90,6 +90,10 @@ export default new Vuex.Store({
       state.user = data.user
       console.log(state.user.id,"active User")
     },
+
+    sidebar(state){
+      state.sidebar = !state.sidebar
+    }
     // setSelfRequested(state, status, user) {
     //     state.user = user
     //     state.self_requested = status
@@ -113,8 +117,9 @@ export default new Vuex.Store({
       newRequestedId:(state) => state.requested_id,
       closeRightNavigation: (state) => state.closeNav,
       newUpdateBase: (state) => state.newRecordBase,
-      newUpdateReserve: (state) => state.newUpdateRecords
-  },
+      newUpdateReserve: (state) => state.newUpdateRecords,
+      sidebar: (state) => state.sidebar
+    },
   modules: {
     // project_categories,
     // projects,

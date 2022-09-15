@@ -1,16 +1,17 @@
 <template>
   <v-navigation-drawer
-        :value="drawer"
-        app
-        :mini-variant.sync="drawer"
-        permanent
-        color="#002C34"
+    :value="drawer"
+    :mini-variant.sync="drawer"
+    app
+    permanent
+    color="#002C34"
+    expand-on-hover
   >
   <!-- <v-navigation-drawer
     :value="drawer"
     :clipped="$vuetify.breakpoint.lgAndUp"
     permanent
-    expand-on-hover
+    :mini-variant.sync="drawer"
     style="top:0px !important;min-height:100vh !important;"
   > -->
 
@@ -92,9 +93,18 @@
       source: String,
     },
     computed : {
-      drawer() {
-        return this.$store.state.sidebar
+      // drawer() {
+      //   return this.$store.state.sidebar
+      // },
+      drawer: {
+        get() {
+        return this.$store.state.sidebar;
+        },
+        set(value) {
+          this.$store.state.sidebar = value;
+        }
       }
+     
     },
     data: () => ({
       logo,

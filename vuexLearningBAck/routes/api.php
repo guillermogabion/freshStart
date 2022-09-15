@@ -51,8 +51,14 @@ Route::middleware('auth:api')->group(function () {
     Route::get('index-subject','SubjectController@indexPrograms');
     Route::get('add-subject','SubjectController@subjectAdd');
     Route::get('update-subject', 'SubjectController@SubjectUpdate');
-    Route::post('searchSubject','SubjectController@searchSubject');
+    Route::get('subject/pagination','SubjectController@searchSubject');
 
+    // library 
+    Route::post('book/add_book', 'BookController@add_book');
+    Route::post('book/edit_book/{id}', 'BookController@edit_book');
+    Route::post('book/edit_book_pic/{id}', 'BookController@edit_book_pic');
+    Route::delete('book/delete_book/{id}', 'BookController@delete_book');
+    Route::get('book/pagination', 'BookController@book_pagination');
     
     
 });
@@ -65,3 +71,4 @@ Route::post('new', 'UserController@new');
 Route::get('approval-request/{id_number}', 'UserController@ApprovalRequest');
 Route::get('number', 'UserController@number');
 Route::get('getsched', 'ClassScheduleController@index');
+Route::get('book', 'BookController@book');
