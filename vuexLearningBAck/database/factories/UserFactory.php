@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Hash;
 $factory->define(User::class, function (Faker $faker) {
     return [
         // 'name' => $faker->name,
+        'firstname' => $faker->firstName,
+        'lastname' => $faker->lastName,
+        'user_type' => rand(0,5),
         'email' => $faker->unique()->safeEmail,
-     
         'password'=>Hash::make('password'),
-
+        
     ];
 });

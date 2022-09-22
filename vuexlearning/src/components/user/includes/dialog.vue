@@ -16,7 +16,7 @@
                 color="Green"
                 dark
                 >
-                Create New User 
+                Add New Enrollee 
              </v-toolbar>
             <div class="card-text-input">
                     <v-flex xs10>
@@ -30,6 +30,30 @@
                     <v-flex xs10>
                         <v-text-field
                             v-model = "payload.firstname"
+                            label="First Name"
+                            required
+                            :rules="firstnameRules"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs10>
+                        <v-text-field
+                            v-model = "payload.guardian"
+                            label="Guardian"
+                            required
+                            :rules="firstnameRules"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs10>
+                        <v-text-field
+                            v-model = "payload.religion"
+                            label="First Name"
+                            required
+                            :rules="firstnameRules"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs10>
+                        <v-text-field
+                            v-model = "payload.civil_status"
                             label="First Name"
                             required
                             :rules="firstnameRules"

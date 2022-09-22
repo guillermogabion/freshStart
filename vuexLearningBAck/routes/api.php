@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('loginTest','UserController@loginTrial');
 Route::post('login','UserController@login');
+Route::post('loginID','UserController@loginID');
 Route::post('UserRegistration','UserController@saveNew');
 Route::post('addMeal', 'MealController@addMeal');
 
@@ -27,30 +28,47 @@ Route::middleware('auth:api')->group(function () {
     
 
     Route::get('user', 'UserController@index');
-        // user
+    // user
+    
+    //Registrar
+    Route::post('new-enrollee', 'UserController@newEnrollee');
     Route::post('saveNew', 'UserController@saveNew');
     Route::post('editUser/{id}', 'UserController@editUser');
-    Route::get('users/pagination','UserController@pagination');
+    Route::get('student/pagination','UserController@pagination');
+    Route::post('searchStudent', 'UserController@search');
+    Route::get('instructor/pagination','UserController@paginationInstructor');
+    Route::post('searchInstructor', 'UserController@searchInstructor');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
+    Route::get('show/{id}','UserController@show');
+    Route::post('edit-profile/{id}', 'UserController@editProfile');
+    Route::post('edit-profile-nopic/{id}', 'UserController@editProfileNoPic');
+    Route::get('index-program','ProgramController@indexPrograms');
+    Route::get('add-program','ProgramController@ProgramsAdd');
+    Route::get('update-program', 'ProgramController@ProgramsUpdate');
+    Route::post('searchProgram','ProgramController@searchProgram');
 
-    // meal 
-    Route::post('updateMeal/{id}', 'MealController@updateMeal');
-    Route::post('updateMealNoPic/{id}', 'MealController@updateMealNoPic');
-    Route::delete('removeMeal', 'MealController@removeMeal');
-    // Route::get('searchMeal', 'MealController@searchMeal');
-    Route::get('meals/pagination', 'MealController@pagination');
+    // subject 
+    Route::get('index-subject','SubjectController@indexPrograms');
+    Route::get('add-subject','SubjectController@subjectAdd');
+    Route::get('update-subject', 'SubjectController@SubjectUpdate');
+    Route::get('subject/pagination','SubjectController@searchSubject');
+
+    // library 
+    Route::post('book/add_book', 'BookController@add_book');
+    Route::post('book/edit_book/{id}', 'BookController@edit_book');
+    Route::post('book/edit_book_pic/{id}', 'BookController@edit_book_pic');
+    Route::delete('book/delete_book/{id}', 'BookController@delete_book');
+    Route::get('book/pagination', 'BookController@book_pagination');
     
-    // scheduledishes 
-    Route::post('addDishSchedule', 'ScheduledDishController@addDishSchedule');
-    Route::post('updateScheduledDish/{id}', 'ScheduledDishController@updateScheduledDish');
-    Route::post('deleteScheduledDish/{id}', 'ScheduledDishController@deleteScheduledDish');
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('new', 'UserController@new');
 
-Route::get('getScheduledDish', 'ScheduledDishController@scheduledDish');
-
-
-Route::get('getAllMeal', 'MealController@getAllMeal');
+Route::get('approval-request/{id_number}', 'UserController@ApprovalRequest');
+Route::get('number', 'UserController@number');
+Route::get('getsched', 'ClassScheduleController@index');
+Route::get('book', 'BookController@book');

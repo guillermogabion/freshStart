@@ -16,16 +16,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: () => ({
-    sidebar:true,
+    sidebar:false,
     logged_in: false,
     self_requested: false,
     right_drawer:null,
     component_requested: '',
     user: {
-      is_admin: 1
+      is_admin: 1,
+      is_instructor : 2,
+      is_librarian : 3,
+      is_registrar : 4,
+      is_executive : 5,
+      is_student : 0
     },
+   
     token: '',
     email: '',
+    id_number: '',
     permissions: [],
     deadlines_changed: false,
     revisions_flag:false ,
@@ -38,7 +45,7 @@ export default new Vuex.Store({
     newUpdateRecords:false,
     newUpdate:false,
     requested_id: 0,
-    drawer: null
+    drawer: false
   }),
   mutations: {
     toggleSideBar(state){
@@ -83,6 +90,10 @@ export default new Vuex.Store({
       state.user = data.user
       console.log(state.user.id,"active User")
     },
+
+    sidebar(state){
+      state.sidebar = !state.sidebar
+    }
     // setSelfRequested(state, status, user) {
     //     state.user = user
     //     state.self_requested = status
@@ -106,8 +117,9 @@ export default new Vuex.Store({
       newRequestedId:(state) => state.requested_id,
       closeRightNavigation: (state) => state.closeNav,
       newUpdateBase: (state) => state.newRecordBase,
-      newUpdateReserve: (state) => state.newUpdateRecords
-  },
+      newUpdateReserve: (state) => state.newUpdateRecords,
+      sidebar: (state) => state.sidebar
+    },
   modules: {
     // project_categories,
     // projects,

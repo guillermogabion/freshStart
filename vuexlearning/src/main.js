@@ -7,14 +7,14 @@ import axios from '@/plugins/axios'
 import general from '@/mixins/general'
 import titleMixin from './mixins/titleMixin'
 import * as VeeValidate from 'vee-validate';
-// import moment from 'moment'
+import moment from 'moment'
 // import general from '@/mixins/general'
 // import VueChart from 'vue-chart-js'
 // import titleMixin from './mixins/titleMixin'
 
 Vue.mixin(titleMixin)
 
-// Vue.prototype.moment = moment
+Vue.prototype.moment = moment
 
 // Vue.config.productionTip = false
 Vue.use(VeeValidate)

@@ -1,7 +1,0 @@
-import axios from '@/plugins/axios';
-
-export const getAllMeal = () => axios.get('getAllMeal')
-export const mealPagination = (url, payload) => axios.get(`/${url}`, payload)
-export const searchMeal = (payload) => axios.post('searchMeal', payload)
-export const editMeal = (id, payload) => axios.post(`updateMeal/${id}`, payload)
-export const editMealNoPic = (id, payload) => axios.post(`updateMealNoPic/${id}`, payload)
