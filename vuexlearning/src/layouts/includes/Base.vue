@@ -4,7 +4,7 @@
         
         <Sidebar/>
         <v-app-bar app>
-             <v-app-bar-nav-icon @click="toggle"></v-app-bar-nav-icon>
+             <!-- <v-app-bar-nav-icon @click="toggle"></v-app-bar-nav-icon> -->
             <v-spacer></v-spacer>
             <Profile/>
         </v-app-bar>
