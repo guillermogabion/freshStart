@@ -5,7 +5,6 @@
     app
     permanent
     color="#002C34"
-    expand-on-hover
   >
   <!-- <v-navigation-drawer
     :value="drawer"
